@@ -136,3 +136,30 @@ I = instrument) and the monthly kl metadata. Station zips cached in `data/raw/dw
   by a TypeError, fixed with an explicit schema. Analysis code must set the dtype.
 - "Majority method per year" is a simplification; mixed months exist (197 station-months
   with both P and I).
+
+## 2026-11-08 — Phase 3 (Data), session 1 (continued): decisions D2–D3, methods_notes
+
+**Asked:** The user asked me to keep track of everything that should go into the paper
+("I can't keep it in my head") and to lead; then answered the station-selection and
+break-handling questions; approved a CLAUDE.md rule for `methods_notes.md`.
+
+**Done:**
+- Created `methods_notes.md` (facts with status tags, definitions, decisions, user's
+  hypotheses, open questions, points the paper must state). CLAUDE.md: rule 10 added
+  (read/maintain it each session); "Current phase" line changed from 2 to 3 — it still
+  said only a connectivity test was allowed, which would have blocked the next session.
+- Pointed out that CLAUDE.md assigns writing/interpretation to the user and suggested I
+  keep notes, ask and critique, while the user writes. The user did not change the rule.
+- Decisions recorded: D2a (no method change), D2b (per-season ≥ 21/30 months → 39
+  stations, chosen over ≥ 84 months total), D2c (instrument and observer stations
+  reported separately; observer n = 3), D3 (control-series test for the 2021 break).
+
+**Where I went wrong / was uncertain:**
+- Earlier in this session I told the user DWD MO_N "varies by station, maybe 3 times a
+  day"; the hourly-data check showed it is a 24-h mean for the stations used. Corrected
+  in the notes and told the user explicitly.
+- The conceptual pairing (ceilometer ↔ CLAAS frequency, observer ↔ ERA5 area fraction)
+  is my teaching statement, not from a cited source; marked [to verify] in the notes.
+- Teaching the control-series test comes close to suggesting the analysis design. I
+  framed it as a method and left the decision and the "what if a jump is found" part
+  to the user.

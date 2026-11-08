@@ -99,9 +99,15 @@ checked in data · **[to verify]** my (Claude's) statement, still needs a source
 |---|---|---|---|---|
 | D1 | 2026-11-08 | Use Potsdam 03987, drop 03988 | Two series at the same site would double-count it; 03987 is the regular operational station, longer record (114 vs 60 months); 03988 ends 2019 and its months have QN = 1 | **[decided]** |
 | D2a | 2026-11-08 | DWD stations: keep only stations whose measurement method does not change in 2015–2024 (48 instrument-only + 12 observer-only; the 15 switching stations are excluded) | A method change is a non-climatic break in the referee; a referee must be homogeneous in time. The paper should state why the 15 were excluded (user's request) | **[decided]** |
-| D2b | 2026-11-08 | Completeness threshold: ≥ 84 of 120 months of MO_N (user's choice, asked as a question → under review). Leaves 47 stations (43 instrument, 4 observer). Counts for other thresholds (instrument / observer): ≥0: 48/12, ≥60: 44/5, ≥96: 35/2, ≥108: 7/1. Seasonal check: with ≥84 total, the weakest stations have only 16/30 DJF or SON months (Genthin, Laage-Kronskamp); requiring every season ≥ 21/30 (70 %) instead leaves 39 stations | Justification still to be written by the user; open whether to add a per-season criterion | **[decided, under review]** |
-| D2c | — | Treat instrument and observer stations together or separately? | — | **[open]** |
-| D3 | — | How to handle the CLAAS-3 CDR → ICDR break (2021-01) and platform changes | — | **[open]** |
+| D2b | 2026-11-08 | Completeness: every season (DJF, MAM, JJA, SON) must have ≥ 21 of its 30 months of MO_N (70 %). Leaves 39 stations: 36 instrument, 3 observer (Berlin-Dahlem 00403, Nordholz-Wanhöden 03639, Berlin Brandenburg 00427). Rejected alternative: ≥ 84 months in total (47 stations), because it allowed stations with only 16/30 DJF or SON months | User: "the research question is seasonal", so completeness must hold per season, not only in total | **[decided]** |
+| D2c | 2026-11-08 | Report instrument and observer stations separately | User: they measure conceptually different quantities (frequency at a point vs sky-area fraction, §3). Consequence to state: the observer group has n = 3 (two in Berlin) → main result rests on the 36 instrument stations; observer group is a small side comparison | **[decided]** |
+| D3 | 2026-11-08 | CLAAS-3 2021 break (and platform changes): test whether a jump in CLAAS−station after 2021-01 also appears in ERA5−station (control series). Same jump in both → common cause (weather/station side); jump only in CLAAS−station → evidence for a satellite-side break | User: "check whether the other sources also jump, to see if it is weather-related" | **[decided: test]** · what to do if a CLAAS-only jump is found: **[open]** |
+
+Selected stations (D2a + D2b), 39 ids: 00298 00342 00403 00427 00591 00596 00662 00704
+00963 01200 01503 01544 01694 01759 01869 02115 02794 02907 03032 03086 03093 03196 03639
+03897 04024 04039 04371 04625 04745 05109 05142 05158 05349 05516 05839 05930 06163 07351
+07374. Extent: 52.08–55.01°N, 6.94–14.07°E. **[verified]** (to be implemented in phase-4
+code, not hand-copied)
 | D4 | — | Treatment of `V_N = -1` (affects only hourly-based checks; MO_N is DWD's own) | — | **[open]** |
 
 ## 5. User's hypotheses (phase 2, in the user's words)
