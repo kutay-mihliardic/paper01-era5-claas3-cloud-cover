@@ -98,7 +98,9 @@ checked in data · **[to verify]** my (Claude's) statement, still needs a source
 | # | Date | Decision | Justification (a priori) | Status |
 |---|---|---|---|---|
 | D1 | 2026-11-08 | Use Potsdam 03987, drop 03988 | Two series at the same site would double-count it; 03987 is the regular operational station, longer record (114 vs 60 months); 03988 ends 2019 and its months have QN = 1 | **[decided]** |
-| D2 | — | DWD station selection: completeness threshold and measurement-method homogeneity (options: instrument-only / no method change / all + test) | — | **[open]** |
+| D2a | 2026-11-08 | DWD stations: keep only stations whose measurement method does not change in 2015–2024 (48 instrument-only + 12 observer-only; the 15 switching stations are excluded) | A method change is a non-climatic break in the referee; a referee must be homogeneous in time. The paper should state why the 15 were excluded (user's request) | **[decided]** |
+| D2b | — | Completeness threshold (min. months of MO_N). Counts of remaining stations (instrument / observer): ≥0: 48/12, ≥60: 44/5, ≥84: 43/4, ≥96: 35/2, ≥108: 7/1 | — | **[open]** |
+| D2c | — | Treat instrument and observer stations together or separately? | — | **[open]** |
 | D3 | — | How to handle the CLAAS-3 CDR → ICDR break (2021-01) and platform changes | — | **[open]** |
 | D4 | — | Treatment of `V_N = -1` (affects only hourly-based checks; MO_N is DWD's own) | — | **[open]** |
 
@@ -107,12 +109,22 @@ checked in data · **[to verify]** my (Claude's) statement, still needs a source
 - H1: The slanted satellite view may cause CLAAS-3 to overestimate cloud cover.
   Still needed: mechanism, which cloud types, and a test with the available data.
 
+### Conceptual pairing (discussed 2026-11-08)
+- User: ceilometer is close to CLAAS and ERA5 ("same point"); observer looks at the whole sky.
+- Refinement given: by *kind of quantity*, ceilometer (yes/no over a point, averaged in
+  time → frequency) pairs with CLAAS-3 (binary pixel, averaged in time → frequency);
+  observer (fraction of a sky area) pairs with ERA5 (fraction of a grid-box area).
+  Spatial footprints still differ (point / ~4–6 km pixel / sky dome / ~25 km box).
+  **[to verify]** against literature before it goes into the paper.
+
 ## 6. Open questions for the user
 
 1. Two breaks (CLAAS 2021, DWD method switches 2016–2023) can overlap in time — how does
-   the design separate them? (D2, D3)
+   the design separate them? D2a removes the DWD side; D3 still open (see the
+   "control series" idea taught on 2026-11-08: compare CLAAS−station and ERA5−station
+   before/after 2021).
 2. ERA5 is an area fraction, CLAAS a frequency — when do their monthly means converge?
-3. Ceilometer vs observer: which is conceptually closer to CLAAS, which to ERA5?
+3. Observers also look at slant angles toward the horizon — does that connect to H1?
 
 ## 7. Points the paper will need to state (methods)
 
@@ -120,6 +132,8 @@ checked in data · **[to verify]** my (Claude's) statement, still needs a source
 - That MO_N was verified to be a 24-h mean (numbers in §2).
 - wetterdienst settings (no unit conversion, soft plausibility) and the raw-file cross-check.
 - Station selection rule (D2) stated before results; Potsdam choice (D1).
+- Why the 15 observer → instrument stations were excluded, with their switch years
+  (table: `data/processed/dwd_cloud_method_by_station.csv`).
 - CLAAS-3 CDR/ICDR split and platform changes; how D3 was handled.
 - DWD observer → instrument transitions in the study period and how they were handled.
 - ERA5 version: final ERA5 only (expver 0001).
