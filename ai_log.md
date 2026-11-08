@@ -104,3 +104,35 @@ series, longer record, QC level), not "the one whose values stay below 8".
 **Uncertain on my side:** My description of CLAAS-3 `cfc` as a cloudy-observation
 frequency within the 0.05° box, and of the DWD sampling, still needs to be checked
 against the CLAAS-3 Product User Manual and the per-station Metadaten_Parameter files.
+
+## 2026-11-08 — Phase 3 (Data), session 1 (continued): how the DWD referee measures
+
+**Asked:** Build a per-station table of how cloud cover was measured (observer vs
+instrument, sampling), keep teaching.
+
+**Done:** `src/dwd_station_metadata.py` → `data/processed/dwd_cloud_method_by_station.csv`
+and `..._by_station_year.csv`, from DWD hourly cloudiness (`V_N_I`: P = person,
+I = instrument) and the monthly kl metadata. Station zips cached in `data/raw/dwd/zips/`
+(git-ignored, ~73 MB).
+
+**Facts (no interpretation):**
+- 76 stations with MO_N data; 75 have an hourly cloudiness file (missing: 03988 Potsdam
+  Säkularstation).
+- Majority method per year, 2015–2024: 48 stations instrument only, 12 observer only,
+  15 switch observer → instrument (first instrument year 2016–2023, e.g. Hamburg and
+  Bremen 2022, Potsdam 03987 2020). The observer-only group has a median of 40 months of
+  MO_N vs 102 (instrument only) and 113 (switching).
+- MO_N matches the mean of all valid hourly V_N values (median abs. difference
+  0.007 octa for instrument months, 0.010 for observer months), not the mean of the
+  06/12/18 UTC terms (median 0.12–0.16). So for these stations MO_N is effectively a
+  24-hour mean.
+- Valid hours per day: median 23.9 (instrument) and 23.5 (observer) per station-year; the
+  10th percentile for observer years is 16.0 h/day. Night share (21–03 UTC) ≈ 0.29 ≈ 7/24.
+- Code V_N = -1 is not defined in DWD's hourly description; it occurs in 17,105 hours,
+  more often in observer years (median share 0.8 % vs 0 %). Not resolved.
+
+**Mistakes / uncertainty:**
+- Reading the DWD CSV with polars inferred `value` as string (first rows empty); caught
+  by a TypeError, fixed with an explicit schema. Analysis code must set the dtype.
+- "Majority method per year" is a simplification; mixed months exist (197 station-months
+  with both P and I).
