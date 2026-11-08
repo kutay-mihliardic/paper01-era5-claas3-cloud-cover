@@ -163,3 +163,23 @@ break-handling questions; approved a CLAUDE.md rule for `methods_notes.md`.
 - Teaching the control-series test comes close to suggesting the analysis design. I
   framed it as a method and left the decision and the "what if a jump is found" part
   to the user.
+
+## 2026-11-08 — Phase 4 (Analysis) start
+
+**Asked:** User passed the phase 3 gate, said they had lost track of the overall
+picture and had not seen any visual of the data yet; asked for a supervisor-style
+overview.
+
+**Done:** Overview (§0 of `methods_notes.md`, also a roadmap of phase 4 steps);
+`src/load_data.py` (all three datasets in fraction 0–1; D1/D2 station rules in code,
+reproducing the 39 stations, 36/3); `src/fig_a_mean_maps.py` → `figures/fig_a_mean_maps.png`;
+descriptive numbers in `methods_notes.md` §8. CLAUDE.md current phase set to 4.
+
+**Where I went wrong / was uncertain:**
+- The user answered several conceptual questions before seeing any figure of the data.
+  In hindsight a quick-look map right after the phase 3 checks would have helped.
+- First render of fig (a) used a 0.50–0.85 colour range (fields looked flat), the study
+  box was hidden under the data and the colour bar wasted space; the legend then
+  covered stations. Caught by looking at the rendered PNG, fixed in three iterations.
+- Station means use only available months while grid means use all 120 months;
+  noted as a caveat, not yet matched.

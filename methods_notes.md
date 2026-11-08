@@ -10,6 +10,42 @@ checked in data · **[to verify]** my (Claude's) statement, still needs a source
 
 ---
 
+## 0. Big picture — where we are
+
+**Question:** In which season does ERA5 total cloud cover deviate most from CLAAS-3 over
+Northern Germany, and — with DWD stations as referee — how much of the deviation is
+ERA5's and how much the satellite's?
+
+**Logic of the study:** two "players" (ERA5 model, CLAAS-3 satellite) and one "referee"
+(DWD stations). If ERA5 and CLAAS-3 disagree, the station tells which one is closer.
+That only works if the referee is trustworthy → hence the DWD checks in §2 and the
+station rules in §4.
+
+| Phase | Owner | Status |
+|---|---|---|
+| 1 Question | user | done (CLAUDE.md) |
+| 2 Physics: what each dataset measures | user | partly done (§3, §5); continues alongside phase 4 |
+| 3 Data: download, units, ranges, referee check, station rules | Claude | **done 2026-11-08** |
+| 4 Analysis: figures | Claude | **in progress** (steps below) |
+| 5 Interpretation | user | — (analysis frozen afterwards) |
+| 6 Code packaging | Claude | — |
+| 7–9 Writing, preprint, Substack | user | — |
+
+**Phase 4 steps**
+
+| # | Step | Status |
+|---|---|---|
+| 4.1 | One loader, all data in fraction 0–1, station rules D1/D2 in code (`src/load_data.py`) | done |
+| 4.2 | Fig (a): 10-year mean maps (`src/fig_a_mean_maps.py`) | draft done |
+| 4.3 | Fig (b): seasonal cycle of all three | next |
+| 4.4 | Fig (c): ERA5 and CLAAS-3 at station locations vs station values, by season, instrument/observer separate | — |
+| 4.5 | Break test (D3): CLAAS−station vs ERA5−station before/after 2021 | needs user's "what if a jump is found" |
+| 4.6 | Table of seasonal differences — the numbers that answer the question | — |
+
+**How the notes map onto the paper:** Introduction ← question (§0) · Data ← §1–2 ·
+Methods ← §3–4 · Results ← §8 + figures · Discussion ← user's hypotheses (§5) and
+phase 5 · Limitations ← open items in §4 and §6.
+
 ## 1. Data sources
 
 | | CLAAS-3 | ERA5 | DWD |
@@ -144,3 +180,14 @@ code, not hand-copied)
 - DWD observer → instrument transitions in the study period and how they were handled.
 - ERA5 version: final ERA5 only (expver 0001).
 - Credits: © EUMETSAT + CLAAS-3 DOI, C3S ERA5 DOI, DWD.
+
+## 8. Results log (descriptive only — interpretation is phase 5, by the user)
+
+### Fig (a) `figures/fig_a_mean_maps.png` — 10-year mean (mean of 12 monthly climatologies)
+- Study-box mean, cos-lat weighted: CLAAS-3 0.682, ERA5 0.674. **[verified]**
+- Grid range of the 10-year mean: CLAAS-3 0.616–0.819, ERA5 0.630–0.701. **[verified]**
+- Stations: instrument (n = 36) mean 0.714, range 0.632–0.773; observer (n = 3) mean
+  0.676, range 0.656–0.712. **[verified]**
+- Visible in the maps: CLAAS-3 values are higher over sea and along coastlines than
+  over land; ERA5 field is smoother with a smaller range. **[verified, visual]**
+- Caveat: grid means use all 120 months, station means only the months available.

@@ -41,4 +41,4 @@ You handle phases 3, 4 and 6 of a 9-phase cycle. Phases 1, 2, 5, 7, 8, 9 (questi
 - Three different units (fraction, percent, octas): convert all to one before any comparison and report the conversion.
 - Planned figures: (a) side-by-side 10-year mean maps, (b) seasonal cycle of all three, (c) ERA5 and CLAAS-3 sampled at station locations vs station values
 - Data on hand: `data/raw/claas3/` holds two CM SAF order archives (.tar): CDR v004 2015-01..2020-12 (72 monthly files) and ICDR v004i1 2021-01..2024-12 (48 files), already cut to 51.5–56°N, 5.5–15°E at 0.05°. Watch for a possible discontinuity at Jan 2021 (CDR → ICDR).
-- Current phase: 3 (Data) — all three datasets on disk and checked; station-selection and break-handling decisions are being made (see `methods_notes.md` §4). No analysis code or figures yet.
+- Current phase: 4 (Analysis) — phase 3 gate passed 2026-11-08. Common-unit loader and draft figure (a) done; next is figure (b). Step list in `methods_notes.md` §0.
