@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Extracted CLAAS-3 NetCDF files (reproduced from the committed .tar archives by src/extract_claas3.py)
+data/raw/claas3/*.nc
