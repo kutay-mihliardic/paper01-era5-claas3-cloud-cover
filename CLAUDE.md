@@ -27,6 +27,7 @@ You handle phases 3, 4 and 6 of a 9-phase cycle. Phases 1, 2, 5, 7, 8, 9 (questi
 7. **Reproducibility.** Raw data in `data/raw/`, processed in `data/processed/`, code in `src/`, figures in `figures/`. No hardcoded absolute paths. Small raw data (< ~50 MB total, openly licensed) is committed to the repo; anything larger is downloaded by a script and git-ignored.
 8. **Secrets.** Never write API keys, passwords or download credentials into code, CLAUDE.md, commits or logs. Read the CDS key from the environment / `~/.cdsapirc` only.
 9. **Data licence.** CLAAS-3 is CC BY 4.0: README and any figure using it must credit "© EUMETSAT" and cite DOI 10.5676/EUM_SAF_CM/CLAAS/V003.
+10. **Methods notes.** At the start of every session, read `methods_notes.md` (verified facts, decisions, open questions). Keep it up to date whenever something is verified, decided or left open. I should never have to remember these things myself.
 
 ## Current note
 
@@ -40,4 +41,4 @@ You handle phases 3, 4 and 6 of a 9-phase cycle. Phases 1, 2, 5, 7, 8, 9 (questi
 - Three different units (fraction, percent, octas): convert all to one before any comparison and report the conversion.
 - Planned figures: (a) side-by-side 10-year mean maps, (b) seasonal cycle of all three, (c) ERA5 and CLAAS-3 sampled at station locations vs station values
 - Data on hand: `data/raw/claas3/` holds two CM SAF order archives (.tar): CDR v004 2015-01..2020-12 (72 monthly files) and ICDR v004i1 2021-01..2024-12 (48 files), already cut to 51.5–56°N, 5.5–15°E at 0.05°. Watch for a possible discontinuity at Jan 2021 (CDR → ICDR).
-- Current phase: 2 (Physics) — no analysis code yet. Only allowed now: a short connectivity test (can this environment reach the CDS API and opendata.dwd.de?).
+- Current phase: 3 (Data) — all three datasets on disk and checked; station-selection and break-handling decisions are being made (see `methods_notes.md` §4). No analysis code or figures yet.
