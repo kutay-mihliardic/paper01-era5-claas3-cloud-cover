@@ -37,3 +37,46 @@ create `ai_log.md` and `next_questions.md`, commit.
   silently did nothing; caught when I grepped the file afterwards, fixed with a proper edit.
 - `xarray` / `netCDF4` were not installed in the container; installed with pip for the
   inspection only. No environment file yet (that is phase 6).
+
+## 2026-11-08 — Phase 3 (Data), session 1 (continued): ERA5 and DWD downloads
+
+**Asked:** Get network access sorted out, then download ERA5 and DWD data via scripts
+(no manual downloads). Also asked me to explain the CLAAS-3 variables in plain terms.
+
+**Done:**
+- Push to GitHub first failed (403, no GitHub App access); the user reconnected GitHub and
+  the push then worked.
+- Created a personal cloud environment for this repo allowing `cds.climate.copernicus.eu`,
+  `opendata.dwd.de` and (added later, see below) `object-store.os-api.cci2.ecmwf.int`. The CDS
+  token is stored as an environment network secret and injected by the proxy; it is not in
+  any file, variable or commit. Scripts run with `CDSAPI_KEY=proxy-injected` as a placeholder.
+- `src/download_era5.py`: ERA5 monthly means, `tcc`, 2015-01..2024-12, box 51.5–56°N,
+  5.5–15°E. Checked: 120 time steps, 19 x 39 grid at 0.25° (lat 56.0 → 51.5 descending),
+  units "(0 - 1)", range 0.271–0.924, no NaN, `expver` = 0001 for all months (no ERA5T).
+  Licence of this CDS dataset is CC BY 4.0 (read from the CDS catalogue API).
+- `src/download_dwd.py`: DWD monthly kl, `cloud_cover_total_mean` (= `MO_N`), via
+  wetterdienst 0.185.0 with `convert_units=False` (default is True!) and plausibility
+  `soft` (default would null implausible values). 146 stations returned in the box, 76 of
+  them have at least one non-missing month in 2015–2024; 6924 non-missing station-months.
+  Only 1 station has all 120 months; 19 have ≥ 108. Fewest stations: 2018-09 (28).
+- Cross-checked wetterdienst output against the raw DWD zip for Hamburg-Fuhlsbüttel
+  (01975): 120/120 months identical, so no unit conversion or filtering happened.
+
+**Where I went wrong / was uncertain:**
+- I first told the user only two hosts were needed. The CDS serves the result files from
+  a third host (`object-store.os-api.cci2.ecmwf.int`); the first download hung on a 0-byte
+  file. Caught by checking the file size, confirmed with a curl test (403 from proxy).
+- wetterdienst uses aiohttp, which ignores HTTPS_PROXY unless `trust_env=True`; the first
+  DWD attempt failed with a DNS error. Fixed via `Settings(fsspec_client_kwargs=...)`.
+- I misused the wetterdienst API once (`.values` vs `.values()`), and my first raw-file
+  cross-check silently compared nothing (wrong string filter); noticed because it printed
+  no rows, fixed and re-run.
+- **Open data issue, not resolved:** Potsdam (Säkularstation, 03988) has 9 months with
+  MO_N > 8 (max 8.94), which is outside the 0–8 octa scale. wetterdienst flags them
+  `suspect:range`; DWD quality level QN_4 = 1 for these rows. Kept as-is in raw data;
+  how to treat them is the user's decision.
+- wetterdienst warns that 3 stations (01018, 02996, 05047) have data files but are not in
+  DWD's station list, so they cannot be requested. I did not check where they are.
+- The CLAAS-3 variable explanation: `cfc_std` as "day-to-day std within the month" and the
+  low/mid/high split by cloud-top pressure are from my general knowledge, not checked
+  against the CLAAS-3 product user manual. Told the user so.
