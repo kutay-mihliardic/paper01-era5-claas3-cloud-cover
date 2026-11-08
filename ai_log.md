@@ -80,3 +80,27 @@ create `ai_log.md` and `next_questions.md`, commit.
 - The CLAAS-3 variable explanation: `cfc_std` as "day-to-day std within the month" and the
   low/mid/high split by cloud-top pressure are from my general knowledge, not checked
   against the CLAAS-3 product user manual. Told the user so.
+
+## 2026-11-08 — Phase 3 (Data), session 1 (continued): referee check ("professor mode")
+
+**Asked:** The user asked me to act as a supervisor and guide them with questions instead
+of deciding for them.
+
+**Facts found (DWD documentation and per-station metadata, not interpretation):**
+- DWD's dataset description (DESCRIPTION_obsgermany-climate-monthly-kl_en.pdf) gives MO_N
+  in 1/8 and does not explain monthly values above 8.
+- Potsdam Säkularstation (03988): special secular series, ends 2019-12; MO_N is the
+  arithmetic mean of daily means built from 3 fixed observation times (~07, 14, 21 local).
+  The 9 months > 8 octas have QN = 1 (formal control only).
+- A regular Potsdam station (03987) exists at practically the same location: 114 months
+  in 2015–2024, max 7.44.
+- Hamburg-Fuhlsbüttel (01975): cloud instrument metadata lists ceilometers (2008-06..2017-05
+  and 2021-04..), i.e. instrumental, not visual; gap in the instrument list 2017-05..2021-04.
+
+**User decision:** Use Potsdam 03987, drop 03988 (avoid two series at the same point).
+I pointed out the justification should be an a-priori criterion (regular operational
+series, longer record, QC level), not "the one whose values stay below 8".
+
+**Uncertain on my side:** My description of CLAAS-3 `cfc` as a cloudy-observation
+frequency within the 0.05° box, and of the DWD sampling, still needs to be checked
+against the CLAAS-3 Product User Manual and the per-station Metadaten_Parameter files.
