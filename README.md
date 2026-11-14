@@ -11,9 +11,10 @@ Model error or satellite artefact? A three-way comparison of cloud cover over No
 
 ### Credits and licences
 
-- **CLAAS-3:** © EUMETSAT. CM SAF CLoud property dAtAset using SEVIRI, edition 3.
+- **CLAAS-3:** © EUMETSAT. Meirink, J. F. et al. (2022): CLAAS-3: CM SAF CLoud property dAtAset using SEVIRI - Edition 3, Satellite Application Facility on Climate Monitoring.
   DOI: [10.5676/EUM_SAF_CM/CLAAS/V003](https://doi.org/10.5676/EUM_SAF_CM/CLAAS/V003). Licence: CC BY 4.0.
-- **ERA5:** Hersbach et al. (2023), ERA5 monthly averaged data on single levels from 1940 to present,
+- **ERA5:** Copernicus Climate Change Service (2023): ERA5 monthly averaged data on single levels from 1940 to present.
   Copernicus Climate Change Service (C3S) Climate Data Store (CDS),
   DOI: [10.24381/cds.f17050d7](https://doi.org/10.24381/cds.f17050d7). Licence: CC BY 4.0.
+  Key reference: Hersbach, H. et al. (2020), The ERA5 global reanalysis, QJRMS, doi:10.1002/qj.3803.
 - **DWD:** Data basis: Deutscher Wetterdienst, Climate Data Center (opendata.dwd.de). Licence: CC BY 4.0.

@@ -235,3 +235,21 @@ Computed the SEVIRI viewing zenith angle over the box (59.7–64.6° at 0°E), c
 
 **Uncertain:** D3c is a methodological decision I made, not the user; flagged as such
 in the notes so it can be revisited before phase 5 freezes the analysis.
+
+## 2026-11-14 — Phase 4/5 boundary: sources for [to verify] items
+
+**Done:** Web-fetch subagents could not reach ECMWF/CM SAF/doi.org (not in the network
+allowlist). Found the verbatim ERA5 tcc definition and the required CDS citation in the
+CDS catalogue layout JSON (allowed host). Added doi.org, www.cmsaf.eu, wui.cmsaf.eu to the
+environment (user-approved card), read the CLAAS-3 PUM and Validation Report (Issue 3.1)
+and the DOI citation. Quotes recorded in `methods_notes.md` §9; §3 definitions updated.
+
+**Where I went wrong / was uncertain:**
+- README cited the ERA5 dataset as "Hersbach et al. (2023)"; the CDS entry asks for
+  "Copernicus Climate Change Service (2023)". Corrected; Hersbach et al. (2020) kept as
+  the key ERA5 paper.
+- The documents contain statements directly relevant to the user's hypotheses (viewing
+  angle, observer vs ceilometer). I recorded them as quotes and did not link them to our
+  results (rule 2); that is for the user in phase 5.
+- Still unverified: how ERA5 monthly means of instantaneous fields are formed; "cloud
+  fraction observations are not assimilated in ERA5"; my "one pixel per box" inference.

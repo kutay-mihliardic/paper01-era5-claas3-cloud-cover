@@ -54,7 +54,7 @@ phase 5 · Limitations ← open items in §4 and §6.
 | Variable | `cfc` | `tcc` | `MO_N` (`cloud_cover_total_mean`) |
 | Unit as stored | % (int32) | fraction, "(0 - 1)" (float32) | octas, 1/8 |
 | Grid / sites | 0.05°, 90 lat × 190 lon, centres 51.525–55.975°N, 5.525–14.975°E | 0.25°, 19 × 39, 51.5–56°N, 5.5–15°E, lat stored N→S | 76 stations with data in 52–55.5°N, 6–14.5°E |
-| Licence / credit | CC BY 4.0, © EUMETSAT, DOI 10.5676/EUM_SAF_CM/CLAAS/V003 | CC BY 4.0, C3S/CDS, DOI 10.24381/cds.f17050d7 | CC BY 4.0, "Data basis: Deutscher Wetterdienst" |
+| Licence / credit | CC BY 4.0, © EUMETSAT; cite Meirink et al. (2022), DOI 10.5676/EUM_SAF_CM/CLAAS/V003 (S1) | CC BY 4.0; cite Copernicus Climate Change Service (2023), DOI 10.24381/cds.f17050d7 (S2), key paper Hersbach et al. (2020) | CC BY 4.0, "Data basis: Deutscher Wetterdienst" |
 | Script | `src/extract_claas3.py` | `src/download_era5.py` | `src/download_dwd.py`, `src/dwd_station_metadata.py` |
 
 ## 2. Verified facts (data checks, phase 3)
@@ -102,16 +102,23 @@ phase 5 · Limitations ← open items in §4 and §6.
 
 ## 3. Definitions — what each number is (phase 2 material)
 
-- **ERA5 `tcc`**: model-diagnosed fraction of the grid box covered by cloud; cloud layers
-  at different model levels combined with an overlap assumption into one number, 0–1.
-  Cloud fraction observations are not assimilated directly. User's wording: "Katmanlar
+- **ERA5 `tcc`**: verbatim (CDS variable table, S2): "This parameter is the proportion of
+  a grid box covered by cloud. Total cloud cover is a single level field calculated from
+  the cloud occurring at different model levels through the atmosphere. Assumptions are
+  made about the degree of overlap/randomness between clouds at different heights. Cloud
+  fractions vary from 0 to 1." **[verified, source S2]** User's wording matches: "Katmanlar
   bir örtüşme varsayımıyla üst üste konup tek sayıya indiriliyor: yukarıdan bakınca
-  kutunun ne kadarı bulutla kapalı?" **[doc]** (check ECMWF ERA5 documentation for the
-  exact definition and citation)
-- **CLAAS-3 `cfc`**: each SEVIRI pixel classified binary cloudy/clear per slot; monthly
-  `cfc` = share of cloudy observations in the 0.05° box (mean of daily means). At 0.05°
-  roughly one SEVIRI pixel per box → effectively a frequency of cloud occurrence.
-  **[to verify]** in the CLAAS-3 Product User Manual.
+  kutunun ne kadarı bulutla kapalı?" — Claim "cloud fraction observations are not
+  assimilated directly" **[to verify]** (not found in S2).
+- **CLAAS-3 `cfc`**: verbatim (PUM, S3, §4.1): "The cloud fractional cover L3 product
+  (monthly and daily mean, as well as monthly mean diurnal cycle) is defined as the
+  fraction of cloudy pixels per grid box compared to the total number of analyzed pixels in
+  the grid box. Pixels are counted as cloudy if the corresponding cloud probability is
+  higher than 50%." L2 pixels: 3 × 3 km² at the sub-satellite point, 15-min resolution
+  (S3 §3). Day = SZA < 75°, night = SZA > 95°, twilight excluded from day/night splits (S3).
+  **[verified, source S3]** The file attribute of `nobs` reads "number of daily means"
+  → monthly = mean of daily means. **[verified, file attribute]** "Roughly one pixel per
+  0.05° box → effectively a frequency" remains Claude's inference **[to verify]**.
 - **DWD `MO_N`**: observer = estimate of the whole sky dome; ceilometer = vertical beam
   over the site, cloud cover derived from the time series. Both aggregated to a 24-h
   daily mean, then monthly mean (verified above). **[doc]** for the ceilometer algorithm.
@@ -123,7 +130,7 @@ phase 5 · Limitations ← open items in §4 and §6.
 
 | | Values per day | Night | Monthly value |
 |---|---|---|---|
-| CLAAS-3 | 96 slots (15 min) | yes, IR-only algorithm | mean of daily means **[to verify]** |
+| CLAAS-3 | 96 slots (15 min) | yes; day/night split at SZA 75°/95° | mean of daily means **[verified]** |
 | ERA5 | 24 (hourly) | yes | mean of hourly fields **[doc]** |
 | DWD MO_N | ~24 (hourly) | yes | mean of daily means of hourly values **[verified]** |
 
@@ -265,3 +272,55 @@ ICDR −0.061…−0.033. All 36 stations have every calendar month in both sub-
 - JJA has the largest ERA5−CLAAS difference in all three periods. **[verified]**
 - CLAAS−station is more negative in the ICDR period in every season; ERA5−station
   changes by ≤ 0.014 between periods. **[verified]**
+
+## 9. Sources (read 2026-11-14) and documented statements
+
+Statements below are quoted from the sources. They are literature for the user's
+phase-5 interpretation; Claude has not linked them to our results.
+
+- **S1** CLAAS-3 DOI landing page, https://doi.org/10.5676/EUM_SAF_CM/CLAAS/V003 →
+  wui.cmsaf.eu. Citation: Meirink, J. F.; Karlsson, K.-G.; Solodovnik, I.; Hüser, I.;
+  Benas, N.; Johansson, E.; Håkansson, N.; Stengel, M.; Selbach, N.; Schröder, M.;
+  Hollmann, R. (2022): CLAAS-3: CM SAF CLoud property dAtAset using SEVIRI - Edition 3,
+  Satellite Application Facility on Climate Monitoring, DOI:10.5676/EUM_SAF_CM/CLAAS/V003.
+- **S2** CDS catalogue entry `reanalysis-era5-single-levels-monthly-means` (layout JSON on
+  object-store.os-api.cci2.ecmwf.int). Required citation: "Copernicus Climate Change
+  Service (2023): ERA5 monthly averaged data on single levels from 1940 to present.
+  Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI:
+  10.24381/cds.f17050d7 (Accessed on DD-MMM-YYYY)". Key reference listed there:
+  Hersbach et al. (2020), The ERA5 global reanalysis, doi:10.1002/qj.3803.
+  How monthly means of instantaneous fields (tcc) are formed: **not found** in S2.
+- **S3** CM SAF Product User Manual, SEVIRI cloud products, CLAAS Edition 3,
+  SAF/CM/KNMI/PUM/SEV/CLD, Issue 3.1, 08.08.2022.
+  https://www.cmsaf.eu/SharedDocs/Literatur/document/2022/saf_cm_knmi_pum_sev_cld_3_1_final_pdf.pdf
+  - "users should keep in mind that CFC is overestimated at high viewing angles, i.e.
+    towards the edge of the SEVIRI disk." (§4.1, Recommended applications)
+  - "Near the SEVIRI sub-satellite point MODIS CFC tends to be higher than CLAAS-3, while
+    the opposite is true towards the edge of the disk. This feature was also found in the
+    comparisons with SYNOP data, and is consistent with the expectation that retrieved
+    cloud cover increases with viewing angle." (§4.1, Validation)
+  - "CLAAS-3 CFC is stable over time [...] although it does feature slight anomalies in
+    the years 2010-2013 and after 2018, which originate from nighttime observations and
+    are most likely related to the calibration of some of the SEVIRI infrared channels"
+    (§4.1, Validation)
+  - CLAAS-3 vs SYNOP: "very good agreement with a small and stable bias of 0.2% in average"
+    (§4.1)
+- **S4** CM SAF Validation Report, SEVIRI cloud products, CLAAS Edition 3,
+  SAF/CM/KNMI/VAL/SEV/CLD, Issue 3.1, 08.08.2022.
+  https://www.cmsaf.eu/SharedDocs/Literatur/document/2022/saf_cm_knmi_val_sev_cld_3_1_final_pdf.pdf
+  - ICDR: "produced with the same algorithms as the TCDR"; a 2020 backwards-extension
+    showed "a very high consistency between the ICDR and the TCDR with differences much
+    smaller than the deviations of the TCDR to the reference observations."
+  - SYNOP reference used only "SYNOP reports provided by manned airport stations"; "At
+    manned stations the total cloud cover is visually estimated by human observers. In
+    contrast, ceilometers are used for that purpose at automatic stations."
+  - Observer errors listed: subjectivity; eye detection limit (cloud optical thickness
+    ~0.5–1.0); at night "the overall effect is normally a negative bias"; "scenery effect,
+    i.e. overestimation of convective cloud towers at a slanted view (Karlsson, 2003). This
+    effect is most pronounced in the summer season and for low to moderate cloud amounts
+    when the overestimation easily can reach values of 20-30 % (1-2 octas)."
+  - Ceilometers: "considerable risk that the precision figures degrade, mainly because
+    ceilometers only observe a very small fraction of the sky."
+  - "a known tendency of CLAAS-3 to overestimate cloud cover at large viewing angles"
+    (cloud-mask validation vs CALIOP).
+- Not downloaded/committed: the PDFs themselves (EUMETSAT documents); URLs above.
