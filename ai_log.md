@@ -291,3 +291,22 @@ source pointers, with ownership and ⚠ items; no prose. One more item in next_q
   physical mechanism for the summer divergence, and added an AI-use statement to the
   skeleton. This is a deviation from the original division of labour and should be
   visible to anyone reading the repository.
+
+## 2026-11-14 — Phase 6 (Code packaging)
+
+**Asked:** Package the code. Also: whether teaching notes like the user's own summary of
+the four "ways of seeing clouds" are being saved (yes: `methods_notes.md` §3, §5, §9).
+
+**Done:** `run.py` + `Makefile` (`make all` from committed data, `make data` to
+re-download), `requirements.txt` (pinned) and `environment.yml`, README rewritten.
+Clean-ups without result changes: `station_climatology` moved to `load_data.py`; the
+monthly instrument share is now produced by `dwd_station_metadata.py` and committed, so
+the switch test no longer depends on git-ignored hourly zips. Verified by cloning the repo
+into an empty directory, deleting all outputs, running `make all` and comparing SHA-256
+hashes with the outputs before packaging: all 13 outputs identical, PNGs included.
+
+**Where I went wrong / was uncertain:**
+- Before packaging, `figS2` could not be reproduced from a fresh clone because it read
+  git-ignored files; found while planning the clean-clone test.
+- Earlier in this session I added an "AI use" section to the paper skeleton and pushed
+  the topic more than the user wanted; removed at the user's request.
