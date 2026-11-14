@@ -37,9 +37,9 @@ station rules in §4.
 |---|---|---|
 | 4.1 | One loader, all data in fraction 0–1, station rules D1/D2 in code (`src/load_data.py`) | done |
 | 4.2 | Fig (a): 10-year mean maps (`src/fig_a_mean_maps.py`) | draft done |
-| 4.3 | Fig (b): seasonal cycle of all three | next |
-| 4.4 | Fig (c): ERA5 and CLAAS-3 at station locations vs station values, by season, instrument/observer separate | — |
-| 4.5 | Break test (D3): CLAAS−station vs ERA5−station before/after 2021 | needs user's "what if a jump is found" |
+| 4.3 | Fig (b): seasonal cycle at the stations, matched sampling (`src/fig_b_seasonal_cycle.py`) | draft done |
+| 4.4 | Fig (c): ERA5 and CLAAS-3 at station locations vs station values, by season, instrument/observer separate | next |
+| 4.5 | Break test (D3): CLAAS−station vs ERA5−station before/after 2021; if CLAAS-only jump → report periods separately (D3b) | — |
 | 4.6 | Table of seasonal differences — the numbers that answer the question | — |
 
 **How the notes map onto the paper:** Introduction ← question (§0) · Data ← §1–2 ·
@@ -126,7 +126,7 @@ phase 5 · Limitations ← open items in §4 and §6.
 | ERA5 | 24 (hourly) | yes | mean of hourly fields **[doc]** |
 | DWD MO_N | ~24 (hourly) | yes | mean of daily means of hourly values **[verified]** |
 
-### Unit conversion (to be applied in phase 4, not yet done)
+### Unit conversion (implemented in `src/load_data.py`)
 - CLAAS-3 % → fraction: ÷ 100. ERA5: already fraction. DWD octas → fraction: ÷ 8.
 
 ## 4. Decisions
@@ -137,14 +137,15 @@ phase 5 · Limitations ← open items in §4 and §6.
 | D2a | 2026-11-08 | DWD stations: keep only stations whose measurement method does not change in 2015–2024 (48 instrument-only + 12 observer-only; the 15 switching stations are excluded) | A method change is a non-climatic break in the referee; a referee must be homogeneous in time. The paper should state why the 15 were excluded (user's request) | **[decided]** |
 | D2b | 2026-11-08 | Completeness: every season (DJF, MAM, JJA, SON) must have ≥ 21 of its 30 months of MO_N (70 %). Leaves 39 stations: 36 instrument, 3 observer (Berlin-Dahlem 00403, Nordholz-Wanhöden 03639, Berlin Brandenburg 00427). Rejected alternative: ≥ 84 months in total (47 stations), because it allowed stations with only 16/30 DJF or SON months | User: "the research question is seasonal", so completeness must hold per season, not only in total | **[decided]** |
 | D2c | 2026-11-08 | Report instrument and observer stations separately | User: they measure conceptually different quantities (frequency at a point vs sky-area fraction, §3). Consequence to state: the observer group has n = 3 (two in Berlin) → main result rests on the 36 instrument stations; observer group is a small side comparison | **[decided]** |
-| D3 | 2026-11-08 | CLAAS-3 2021 break (and platform changes): test whether a jump in CLAAS−station after 2021-01 also appears in ERA5−station (control series). Same jump in both → common cause (weather/station side); jump only in CLAAS−station → evidence for a satellite-side break | User: "check whether the other sources also jump, to see if it is weather-related" | **[decided: test]** · what to do if a CLAAS-only jump is found: **[open]** |
+| D3 | 2026-11-08 | CLAAS-3 2021 break (and platform changes): test whether a jump in CLAAS−station after 2021-01 also appears in ERA5−station (control series). Same jump in both → common cause (weather/station side); jump only in CLAAS−station → evidence for a satellite-side break | User: "check whether the other sources also jump, to see if it is weather-related" | **[decided]** |
+| D3b | 2026-11-14 | If the D3 test finds a jump only in CLAAS−station: report the CDR period (2015–2020) and the ICDR period (2021–2024) separately | User's choice (option a of: separate periods / CDR only / whole period + limitation), made before seeing the test result | **[decided]** |
+| D4 | — | Treatment of `V_N = -1` (affects only hourly-based checks; MO_N is DWD's own) | — | **[open]** |
 
 Selected stations (D2a + D2b), 39 ids: 00298 00342 00403 00427 00591 00596 00662 00704
 00963 01200 01503 01544 01694 01759 01869 02115 02794 02907 03032 03086 03093 03196 03639
 03897 04024 04039 04371 04625 04745 05109 05142 05158 05349 05516 05839 05930 06163 07351
 07374. Extent: 52.08–55.01°N, 6.94–14.07°E. **[verified]** (to be implemented in phase-4
 code, not hand-copied)
-| D4 | — | Treatment of `V_N = -1` (affects only hourly-based checks; MO_N is DWD's own) | — | **[open]** |
 
 ## 5. User's hypotheses (phase 2, in the user's words)
 
@@ -191,3 +192,31 @@ code, not hand-copied)
 - Visible in the maps: CLAAS-3 values are higher over sea and along coastlines than
   over land; ERA5 field is smoother with a smaller range. **[verified, visual]**
 - Caveat: grid means use all 120 months, station means only the months available.
+
+### Fig (b) `figures/fig_b_seasonal_cycle.png` — seasonal cycle at the stations
+Method: ERA5 and CLAAS-3 sampled at each selected station (nearest cell; max distance
+14.1 km ERA5, 3.1 km CLAAS-3) only in months with MO_N → identical sampling for all
+three (4052 station-months: 3742 instrument, 310 observer). Per-station 12-month
+climatology, then mean over stations. Numbers: `data/processed/fig_b_monthly_climatology.csv`.
+This replaces the sampling caveat of fig (a) for station comparisons. **[verified]**
+
+Seasonal means (fraction), instrument stations, n = 36:
+
+| Season | Station | ERA5 | CLAAS-3 | ERA5−station | CLAAS−station | ERA5−CLAAS |
+|---|---|---|---|---|---|---|
+| DJF | 0.818 | 0.783 | 0.789 | −0.035 | −0.029 | −0.006 |
+| MAM | 0.659 | 0.622 | 0.622 | −0.036 | −0.037 | 0.000 |
+| JJA | 0.639 | 0.611 | 0.590 | −0.027 | −0.049 | +0.021 |
+| SON | 0.741 | 0.709 | 0.701 | −0.032 | −0.040 | +0.008 |
+
+Observer stations, n = 3: ERA5−station −0.009/−0.009/−0.003/+0.009 and
+CLAAS−station −0.002/−0.008/−0.027/+0.014 (DJF/MAM/JJA/SON).
+
+Descriptive observations **[verified]**:
+- Instrument stations: both ERA5−station and CLAAS−station are negative in all 12
+  months (ERA5 −0.046…−0.013, CLAAS −0.053…−0.019).
+- Observer stations: differences lie between −0.039 and +0.027; positive in Oct–Dec.
+- ERA5−CLAAS at instrument stations is largest in Jun (+0.035), Aug (+0.029), Sep (+0.022);
+  within ±0.01 in all other months.
+- Inter-station spread (25–75 %) of the differences is 0.02–0.06 wide, i.e. comparable
+  to or larger than the mean differences.

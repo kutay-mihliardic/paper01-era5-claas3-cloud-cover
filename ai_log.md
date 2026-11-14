@@ -183,3 +183,24 @@ descriptive numbers in `methods_notes.md` §8. CLAUDE.md current phase set to 4.
   covered stations. Caught by looking at the rendered PNG, fixed in three iterations.
 - Station means use only available months while grid means use all 120 months;
   noted as a caveat, not yet matched.
+
+## 2026-11-14 — Phase 4 (Analysis), session 2: figure (b)
+
+**Asked:** Move on to figure (b); user chose option (a) for D3 (report CDR and ICDR
+periods separately if a CLAAS-only jump is found). User also asked whether the paper
+can be finished tonight.
+
+**Done:** Read `methods_notes.md` first (rule 10); fixed a broken row in its decisions
+table (D4 had ended up below the station list) and the stale "unit conversion not yet
+done" heading; recorded D3b. Added `sample_at_stations` / `matched_station_table` to
+`src/load_data.py` (ERA5/CLAAS-3 sampled at stations only in months with MO_N; spot
+check of one station-month matched the raw CLAAS value). `src/fig_b_seasonal_cycle.py`
+→ `figures/fig_b_seasonal_cycle.png` + `data/processed/fig_b_monthly_climatology.csv`.
+
+**Where I went wrong / was uncertain:**
+- The station line is drawn in neutral ink, which fails the categorical palette
+  validator (lightness/chroma) by design; identity is carried by marker shape and
+  direct labels. ERA5/CLAAS blue/orange pass (CVD ΔE 24.7).
+- First render had the ERA5 and CLAAS-3 direct labels on top of each other; fixed.
+- Choosing to compare at station locations with matched months (instead of box means)
+  is an analysis design choice I made; documented in the notes so the user can object.

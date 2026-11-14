@@ -126,3 +126,38 @@ def box_mean(da: xr.DataArray) -> xr.DataArray:
     sub = da.sel(lat=slice(b["lat_min"], b["lat_max"]), lon=slice(b["lon_min"], b["lon_max"]))
     w = np.cos(np.deg2rad(sub["lat"]))
     return sub.weighted(w).mean(("lat", "lon"))
+
+
+def sample_at_stations(da: xr.DataArray, stations: pd.DataFrame, name: str) -> pd.DataFrame:
+    """Value of the nearest grid cell at each station, for every month.
+
+    Returns columns station_id, time, <name>, plus <name>_dist_km (distance from the
+    station to the centre of the cell that was used).
+    """
+    lat = xr.DataArray(stations["latitude"].to_numpy(), dims="station")
+    lon = xr.DataArray(stations["longitude"].to_numpy(), dims="station")
+    picked = da.sel(lat=lat, lon=lon, method="nearest")
+    out = picked.to_dataframe(name=name).reset_index()
+    out["station_id"] = stations["station_id"].to_numpy()[out["station"].to_numpy()]
+    dlat = np.deg2rad(picked["lat"].to_numpy() - stations["latitude"].to_numpy())
+    dlon = np.deg2rad(picked["lon"].to_numpy() - stations["longitude"].to_numpy())
+    km = 6371.0 * np.hypot(dlat, dlon * np.cos(np.deg2rad(stations["latitude"].to_numpy())))
+    out[f"{name}_dist_km"] = km[out["station"].to_numpy()]
+    return out[["station_id", "time", name, f"{name}_dist_km"]]
+
+
+def matched_station_table() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """One row per selected station and month with MO_N: station, ERA5 and CLAAS-3 values.
+
+    Gridded values are taken only for months in which the station has data, so all
+    three columns share exactly the same sampling.
+    """
+    vals, stations = load_dwd()
+    era5 = sample_at_stations(load_era5(), stations, "era5")
+    claas = sample_at_stations(load_claas3(), stations, "claas3")
+    t = vals.rename(columns={"cloud_fraction": "station"})
+    t = t.merge(era5, on=["station_id", "time"], how="left").merge(claas, on=["station_id", "time"], how="left")
+    t = t.merge(stations[["station_id", "method"]], on="station_id")
+    if t[["era5", "claas3"]].isna().any().any():
+        raise RuntimeError("missing gridded value at a station-month")
+    return t, stations
