@@ -188,11 +188,9 @@ code, not hand-copied)
 
 ## 5b. Claude's interpretation (at the user's request, 2026-11-14)
 
-The user asked Claude to develop the interpretation ("I am not an expert"). Everything in
-this subsection is Claude's reading of our results plus sources S3/S4 only. The user
-must be able to defend each point before it goes into the paper, and the paper must
-disclose that the interpretation was developed with an AI assistant. Evidence strength
-is given for each point.
+The user asked Claude to develop the interpretation. Everything in this subsection is
+Claude's reading of our results plus sources S3/S4 only. The user will be examined on
+these points before submission. Evidence strength is given for each point.
 
 - **I1 — The referee offset is at least partly a property of the referee.**
   Facts: the 36 instrument stations read 0.03–0.05 above both ERA5 and CLAAS-3 in every

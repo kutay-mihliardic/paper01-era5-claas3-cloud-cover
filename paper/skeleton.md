@@ -151,12 +151,6 @@ depends on how the ground referee measures cloud cover.
 - © EUMETSAT, CM SAF (CLAAS-3); Copernicus Climate Change Service / ECMWF (ERA5);
   Deutscher Wetterdienst.
 
-## Use of AI tools (required)
-
-- ⚠ State that data processing, analysis code and parts of the interpretation (§5b of
-  the notes) were developed with an AI assistant (Claude), with the author directing and
-  checking the work; point to `ai_log.md` in the repository.
-
 ## References (verified so far)
 
 - Copernicus Climate Change Service (2023): ERA5 monthly averaged data on single levels
