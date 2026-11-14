@@ -272,3 +272,22 @@ and the DOI citation. Quotes recorded in `methods_notes.md` §9; §3 definitions
   changes along the axis. Recorded as a caveat; I did not add a post-hoc test.
 - This analysis was added after the original figure plan (a–c); it was the user's
   explicit choice to include it in this note rather than in next_questions.md.
+
+## 2026-11-14 — Phase 4 gate passed; phase 5 start; paper skeleton
+
+**Asked:** User approved the figures as final (phase 4 gate), chose main message (a)
+(D6), said they are not an expert and asked me to advance the interpretation, and asked
+for the paper skeleton.
+
+**Done:** CLAUDE.md current phase → 5. `methods_notes.md`: D6; §5b "Claude's
+interpretation" (I1–I4) with evidence strength, explicitly separated from the user's
+hypotheses H1–H3. `paper/skeleton.md`: section-by-section facts, numbers, figure and
+source pointers, with ownership and ⚠ items; no prose. One more item in next_questions.md.
+
+**Where I went wrong / was uncertain:**
+- CLAUDE.md rule 2 and the phase split give interpretation to the user. The user
+  explicitly asked me to develop it after giving their own hypotheses, so I did, but
+  labelled every point as mine, graded the evidence, refused to propose an unsourced
+  physical mechanism for the summer divergence, and added an AI-use statement to the
+  skeleton. This is a deviation from the original division of labour and should be
+  visible to anyone reading the repository.

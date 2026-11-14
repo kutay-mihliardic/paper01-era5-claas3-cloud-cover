@@ -26,10 +26,10 @@ station rules in §4.
 | 1 Question | user | done (CLAUDE.md) |
 | 2 Physics: what each dataset measures | user | partly done (§3, §5); continues alongside phase 4 |
 | 3 Data: download, units, ranges, referee check, station rules | Claude | **done 2026-11-08** |
-| 4 Analysis: figures | Claude | **in progress** (steps below) |
-| 5 Interpretation | user | — (analysis frozen afterwards) |
+| 4 Analysis: figures | Claude | **done 2026-11-14** (user approved figures as final) |
+| 5 Interpretation | user (+ Claude at user's request, §5b) | **in progress**; analysis frozen once it closes |
 | 6 Code packaging | Claude | — |
-| 7–9 Writing, preprint, Substack | user | — |
+| 7–9 Writing, preprint, Substack | user | skeleton: `paper/skeleton.md` |
 
 **Phase 4 steps**
 
@@ -150,6 +150,7 @@ phase 5 · Limitations ← open items in §4 and §6.
 | D3b | 2026-11-14 | If the D3 test finds a jump only in CLAAS−station: report the CDR period (2015–2020) and the ICDR period (2021–2024) separately | User's choice (option a of: separate periods / CDR only / whole period + limitation), made before seeing the test result | **[decided]** |
 | D3c | 2026-11-14 | No threshold for "jump" had been fixed before the test; the result is borderline (CLAAS−station p = 0.09, CLAAS−ERA5 p = 0.02). Main results use 2015–2024; CDR (2015–2020) and ICDR (2021–2024) are shown as a sensitivity analysis regardless of the test; test results reported as they are. Supersedes D3b | Choosing a threshold after seeing the result would be outcome-driven; showing both views lets the reader judge. Decided by Claude at the user's request ("decide what a peer-reviewed journal expects") | **[decided]** |
 | D5 | 2026-11-14 | Method-switch test (user chose to do it now, option a): 15 observer→instrument stations; switch month = month after the last month with ≤ 50 % instrument hours (DWD hourly V_N_I); months with 10–90 % instrument share dropped; station used only with ≥ 12 months before and after; anomaly of station − reference (ERA5; CLAAS-3 as second reference) minus the station's calendar-month mean; difference-in-differences against the 36 stable instrument stations over the same months; mean over stations, bootstrap 95 % CI (10 000, seed 1), sign test | Tests H2's premise that instrument stations read higher than observers at the same site. Rules fixed and committed before running (`src/method_switch_test.py`) | **[decided, pre-registered]** |
+| D6 | 2026-11-14 | Main message (option a): we cannot say definitively which dataset is right, because the referee itself depends on the measurement method; we show that ERA5 and CLAAS-3 diverge most in summer (independent of the referee and of the CDR/ICDR period), and that the attribution to ERA5 vs satellite is sensitive to the choice of referee | User's choice | **[decided]** |
 | D4 | — | Treatment of `V_N = -1` (affects only hourly-based checks; MO_N is DWD's own) | — | **[open]** |
 
 Selected stations (D2a + D2b), 39 ids: 00298 00342 00403 00427 00591 00596 00662 00704
@@ -184,6 +185,52 @@ code, not hand-copied)
   "ceilometers read too high" to "observers read too low (at night)": which referee is
   closer to the truth is not known from our data, and the attribution (ERA5 vs CLAAS-3
   share) depends on it. **[open: user's Discussion point]**
+
+## 5b. Claude's interpretation (at the user's request, 2026-11-14)
+
+The user asked Claude to develop the interpretation ("I am not an expert"). Everything in
+this subsection is Claude's reading of our results plus sources S3/S4 only. The user
+must be able to defend each point before it goes into the paper, and the paper must
+disclose that the interpretation was developed with an AI assistant. Evidence strength
+is given for each point.
+
+- **I1 — The referee offset is at least partly a property of the referee.**
+  Facts: the 36 instrument stations read 0.03–0.05 above both ERA5 and CLAAS-3 in every
+  season (Table 1); the 3 observer stations are within about ±0.03 of both; at the 11
+  switching stations the instrument period reads about +0.024 higher relative to ERA5
+  than the observer period (D5). Reading: these three facts point the same way — the
+  constant offset to instrument stations is, to a large part, tied to the measurement
+  method, so it should not be presented as an ERA5 or CLAAS-3 error. S4 documents one
+  mechanism on the observer side (night-time underestimation); our data cannot tell
+  whether observers read too low or instruments too high.
+  Strength: moderate (n = 3 observer stations, n = 11 switch stations, gradual-rise caveat).
+- **I2 — The summer divergence is the referee-independent result.**
+  Facts: ERA5 − CLAAS-3 at the stations is largest in JJA (+0.022; CDR +0.012, ICDR
+  +0.035) and within ±0.01 in other seasons. In JJA, CLAAS − station is more negative than
+  ERA5 − station for BOTH referee types (instrument −0.049 vs −0.027; observer −0.027 vs
+  −0.003). Reading: the direction "in summer CLAAS-3 is lower than ERA5, and further from
+  the stations" holds for both kinds of referee, so it does not depend on the referee
+  question in I1 — only its size does. Strength: good for the direction (both referee
+  types, both periods); weak for the size (observer n = 3).
+  Physical mechanism for the summer difference: **not proposed** — Claude has no checked
+  source; any mechanism (e.g. how small broken convective clouds are treated by a binary
+  pixel mask vs a model grid-box fraction) would be speculation and needs literature
+  before it enters the paper.
+- **I3 — H1 (viewing angle) is not visible as a general overestimate at land stations.**
+  Facts: S3/S4 document CLAAS-3 overestimation at high viewing angles; our VZA is 60–65°.
+  But at land stations CLAAS-3 is about equal to ERA5 outside summer and lower in summer.
+  Reading: in our data a viewing-angle overestimate is not visible at land stations
+  relative to ERA5; it may exist and be offset by something else — we cannot separate
+  this. The higher CLAAS-3 values over sea and at Baltic coast/island stations (Fig 1,
+  Fig 3) are a separate pattern that we did not analyse (surface type) → next_questions.
+  Strength: weak either way; state as an open point.
+- **I4 — The CLAAS-3 change around 2020/21 looks like a satellite-side drift, not a
+  break in our main result.** Facts: CLAAS − station shifts −0.017 after 2021 (p = 0.09),
+  ERA5 − station does not (p = 0.96); the decline is gradual from about 2020; S3 reports
+  "slight anomalies [...] after 2018, which originate from nighttime observations"; S4
+  found ICDR and TCDR highly consistent in their 2020 overlap. Reading: consistent with
+  a slow satellite-side drift rather than a step caused by the ICDR switch itself; the
+  summer maximum of ERA5 − CLAAS holds in both periods. Strength: moderate.
 
 ### Conceptual pairing (discussed 2026-11-08)
 - User: ceilometer is close to CLAAS and ERA5 ("same point"); observer looks at the whole sky.

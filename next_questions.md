@@ -9,3 +9,6 @@ Ideas that came up during this note but are out of scope for it.
   at the 15 switching stations. Came up in Note #1, phase 5 (2026-11-14).
 - **Which referee is closer to the truth: observer or ceilometer?** Needs an independent
   reference (e.g. lidar/radar sites, CALIPSO overpasses) at a few stations.
+- **Why is CLAAS-3 higher over sea and at Baltic coast/island stations?** Seen in Fig 1
+  and Fig 3 of Note #1 (Schönhagen, Greifswalder Oie, Boltenhagen) but not analysed
+  (surface type, coastline in the 0.05° cell, viewing geometry).
