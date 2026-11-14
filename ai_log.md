@@ -221,3 +221,17 @@ check of one station-month matched the raw CLAAS value). `src/fig_b_seasonal_cyc
   A step test is not designed for that; noted, not changed.
 - fig (c) imports `station_climatology` from the fig (b) script; should move to
   `load_data.py` in phase 6.
+
+## 2026-11-14 — Phase 4, session 2 (continued): D3c, Table 1, viewing angle
+
+**Asked:** User asked me to decide the break-handling question "the way a peer-reviewed
+journal would expect" and to lead more, since this is the first project.
+
+**Done:** Decided D3c (full period main result; CDR/ICDR as sensitivity analysis
+regardless of the test) and recorded it as my decision at the user's request.
+`src/table1_seasonal_differences.py` → `data/processed/table1_seasonal_differences.csv`.
+Computed the SEVIRI viewing zenith angle over the box (59.7–64.6° at 0°E), closing one
+[to verify] item.
+
+**Uncertain:** D3c is a methodological decision I made, not the user; flagged as such
+in the notes so it can be revisited before phase 5 freezes the analysis.

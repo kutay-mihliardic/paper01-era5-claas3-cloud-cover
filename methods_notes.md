@@ -39,8 +39,8 @@ station rules in §4.
 | 4.2 | Fig (a): 10-year mean maps (`src/fig_a_mean_maps.py`) | draft done |
 | 4.3 | Fig (b): seasonal cycle at the stations, matched sampling (`src/fig_b_seasonal_cycle.py`) | draft done |
 | 4.4 | Fig (c): station seasonal means, grid vs station (`src/fig_c_station_scatter.py`) | draft done |
-| 4.5 | Break test (`src/break_test_2021.py`, fig S1) | done; threshold for "jump" **open** → D3b pending |
-| 4.6 | Table of seasonal differences — the numbers that answer the question | numbers exist (§8 fig b, fig c); final table after D3b |
+| 4.5 | Break test (`src/break_test_2021.py`, fig S1) | done; handled by D3c |
+| 4.6 | Table 1: seasonal differences, full period + CDR/ICDR sensitivity (`src/table1_seasonal_differences.py`) | done |
 
 **How the notes map onto the paper:** Introduction ← question (§0) · Data ← §1–2 ·
 Methods ← §3–4 · Results ← §8 + figures · Discussion ← user's hypotheses (§5) and
@@ -115,8 +115,9 @@ phase 5 · Limitations ← open items in §4 and §6.
 - **DWD `MO_N`**: observer = estimate of the whole sky dome; ceilometer = vertical beam
   over the site, cloud cover derived from the time series. Both aggregated to a 24-h
   daily mean, then monthly mean (verified above). **[doc]** for the ceilometer algorithm.
-- **Viewing geometry**: SEVIRI at 0° longitude views Northern Germany at a satellite
-  zenith angle of roughly 60°. **[to verify]** compute the exact angle for the box.
+- **Viewing geometry**: satellite viewing zenith angle over the study box (corners) is
+  59.7–64.6° for a sub-satellite point at 0°E (59.5–64.0° at 3.5°E, 59.6–63.4° at 9.5°E);
+  computed from spherical geometry (R = 6371 km, orbit radius 42164 km). **[verified, computed]**
 
 ### Sampling
 
@@ -139,6 +140,7 @@ phase 5 · Limitations ← open items in §4 and §6.
 | D2c | 2026-11-08 | Report instrument and observer stations separately | User: they measure conceptually different quantities (frequency at a point vs sky-area fraction, §3). Consequence to state: the observer group has n = 3 (two in Berlin) → main result rests on the 36 instrument stations; observer group is a small side comparison | **[decided]** |
 | D3 | 2026-11-08 | CLAAS-3 2021 break (and platform changes): test whether a jump in CLAAS−station after 2021-01 also appears in ERA5−station (control series). Same jump in both → common cause (weather/station side); jump only in CLAAS−station → evidence for a satellite-side break | User: "check whether the other sources also jump, to see if it is weather-related" | **[decided]** |
 | D3b | 2026-11-14 | If the D3 test finds a jump only in CLAAS−station: report the CDR period (2015–2020) and the ICDR period (2021–2024) separately | User's choice (option a of: separate periods / CDR only / whole period + limitation), made before seeing the test result | **[decided]** |
+| D3c | 2026-11-14 | No threshold for "jump" had been fixed before the test; the result is borderline (CLAAS−station p = 0.09, CLAAS−ERA5 p = 0.02). Main results use 2015–2024; CDR (2015–2020) and ICDR (2021–2024) are shown as a sensitivity analysis regardless of the test; test results reported as they are. Supersedes D3b | Choosing a threshold after seeing the result would be outcome-driven; showing both views lets the reader judge. Decided by Claude at the user's request ("decide what a peer-reviewed journal expects") | **[decided]** |
 | D4 | — | Treatment of `V_N = -1` (affects only hourly-based checks; MO_N is DWD's own) | — | **[open]** |
 
 Selected stations (D2a + D2b), 39 ids: 00298 00342 00403 00427 00591 00596 00662 00704
@@ -252,6 +254,14 @@ mean(2015–2020); exact permutation test over whole years (210 splits). **[veri
 
 - Visual: the CLAAS-3 − station running mean declines gradually from about 2020 and
   is most negative in 2024; it does not look like a single step at 2021-01. **[verified, visual]**
-- **[open]** D3 did not fix in advance what counts as "a jump is found" (e.g. p < 0.05,
-  and on which series). With p < 0.05 on CLAAS−station (the series named in D3) → no;
-  on CLAAS−ERA5 → yes. User must decide before D3b is applied.
+- D3 had not fixed in advance what counts as "a jump"; resolved by D3c (sensitivity
+  analysis for both periods, no threshold).
+
+### Table 1 `data/processed/table1_seasonal_differences.csv` (instrument stations, n = 36)
+ERA5−CLAAS at stations by period (DJF/MAM/JJA/SON): 2015–2024 −0.006/+0.001/+0.022/+0.007;
+CDR 2015–2020 −0.012/−0.001/+0.012/−0.005; ICDR 2021–2024 +0.004/+0.003/+0.035/+0.021.
+ERA5−station: CDR −0.039…−0.028, ICDR −0.045…−0.026. CLAAS−station: CDR −0.040…−0.027,
+ICDR −0.061…−0.033. All 36 stations have every calendar month in both sub-periods. **[verified]**
+- JJA has the largest ERA5−CLAAS difference in all three periods. **[verified]**
+- CLAAS−station is more negative in the ICDR period in every season; ERA5−station
+  changes by ≤ 0.014 between periods. **[verified]**
