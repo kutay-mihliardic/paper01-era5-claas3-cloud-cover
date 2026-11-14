@@ -159,7 +159,7 @@ def main() -> int:
     ax.set_yticks(range(len(order)), [names[s] for s in order], fontsize=7)
     ax.set_xlabel("Difference-in-differences shift (0–1)", fontsize=9, color=INK)
     ax.set_title("(b) Per station", loc="left", fontsize=10, color=INK)
-    ax.legend(loc="lower right", fontsize=7, frameon=False)
+    ax.legend(loc="upper left", fontsize=7, frameon=False)
     for a in axes:
         a.grid(axis="x" if a is axes[1] else "y", color=GRID, linewidth=0.6)
         a.tick_params(colors=MUTED, labelsize=8)

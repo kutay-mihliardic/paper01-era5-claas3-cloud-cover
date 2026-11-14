@@ -41,6 +41,7 @@ station rules in §4.
 | 4.4 | Fig (c): station seasonal means, grid vs station (`src/fig_c_station_scatter.py`) | draft done |
 | 4.5 | Break test (`src/break_test_2021.py`, fig S1) | done; handled by D3c |
 | 4.6 | Table 1: seasonal differences, full period + CDR/ICDR sensitivity (`src/table1_seasonal_differences.py`) | done |
+| 4.7 | Method-switch natural experiment (D5, `src/method_switch_test.py`, fig S2) | done |
 
 **How the notes map onto the paper:** Introduction ← question (§0) · Data ← §1–2 ·
 Methods ← §3–4 · Results ← §8 + figures · Discussion ← user's hypotheses (§5) and
@@ -170,9 +171,7 @@ code, not hand-copied)
   a *bias* (same sign in all 12 months and across stations). Random error from a small
   sky sample averages out over 10 years × 36 stations, so H2 as stated predicts noise,
   not a systematic excess. Still needed: a mechanism that makes a point/ceilometer value
-  systematically higher, and a test. Candidate test with our own data: the 15 stations
-  that switched observer → instrument (excluded by D2a) — compare station−ERA5 before
-  and after each switch (natural experiment). **[open: user decides now vs next note]**
+  systematically higher, and a test. Test done (D5, §8): user chose to run it now.
 
 ### Conceptual pairing (discussed 2026-11-08)
 - User: ceilometer is close to CLAAS and ERA5 ("same point"); observer looks at the whole sky.
@@ -337,3 +336,21 @@ phase-5 interpretation; Claude has not linked them to our results.
   - "a known tendency of CLAAS-3 to overestimate cloud cover at large viewing angles"
     (cloud-mask validation vs CALIOP).
 - Not downloaded/committed: the PDFs themselves (EUMETSAT documents); URLs above.
+
+### Method-switch test (D5) `figures/figS2_method_switch.png`, `data/processed/method_switch_test.csv`
+Pre-registered in commit 1371c3e before running. **[verified]**
+- 15 switching stations; 11 used (≥ 12 months before and after). Excluded by the rule:
+  Arkona (0 months before), Magdeburg (0 before), Sankt Peter-Ording (5 before),
+  Seehausen (5 after; hourly instrument share fluctuated until 2024-05).
+- Difference-in-differences shift of station − reference after the switch:
+  - vs ERA5: mean +0.024 (+0.20 octa), bootstrap 95 % CI [+0.014, +0.034], 10 of 11 positive,
+    sign test p = 0.012
+  - vs CLAAS-3: mean +0.023 (+0.18 octa), 95 % CI [+0.010, +0.033], 9 of 11 positive, p = 0.065
+- Only negative station: Rostock-Warnemünde (−0.017 vs ERA5, −0.025 vs CLAAS-3).
+- For scale: at the 36 stable instrument stations ERA5 − station is −0.027 … −0.036
+  by season (Table 1).
+- Caveat (visual, panel a): the aligned composite rises gradually from about 40 months
+  before the switch rather than as a single step at month 0. The set of stations
+  contributing changes along the axis (early switchers only contribute after, late
+  switchers only before). A before/after mean does not distinguish a step from a trend.
+  **[verified, visual]** — not tested further (would be post hoc).

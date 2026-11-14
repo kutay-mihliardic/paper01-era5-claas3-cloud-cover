@@ -253,3 +253,22 @@ and the DOI citation. Quotes recorded in `methods_notes.md` §9; §3 definitions
   results (rule 2); that is for the user in phase 5.
 - Still unverified: how ERA5 monthly means of instantaneous fields are formed; "cloud
   fraction observations are not assimilated in ERA5"; my "one pixel per box" inference.
+
+## 2026-11-14 — Phase 4 (continued): method-switch natural experiment (D5)
+
+**Asked:** User chose to test H2's premise now (option a) rather than defer it.
+
+**Done:** Wrote `src/method_switch_test.py`, recorded its rules as D5 and committed them
+(1371c3e) before running. Result: DiD +0.024 vs ERA5 (10/11 stations positive, p = 0.012),
++0.023 vs CLAAS-3 (9/11, p = 0.065). Fig S2.
+
+**Where I went wrong / was uncertain:**
+- My console filter `grep -v -i warn` (meant to hide warnings) also hid the line for
+  "Rostock-Warnemünde", so I briefly thought a station was missing. Caught by counting
+  stations in the output CSV; no analysis change. Lesson: don't filter output by
+  substrings that can appear in data.
+- The event-study composite rises gradually before the switch rather than stepping;
+  the before/after DiD cannot distinguish a step from a trend, and station composition
+  changes along the axis. Recorded as a caveat; I did not add a post-hoc test.
+- This analysis was added after the original figure plan (a–c); it was the user's
+  explicit choice to include it in this note rather than in next_questions.md.
