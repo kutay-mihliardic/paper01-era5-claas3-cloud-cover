@@ -30,7 +30,6 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import load_data as L  # noqa: E402
-from fig_b_seasonal_cycle import station_climatology  # noqa: E402
 
 OUT_FIG = L.REPO_ROOT / "figures" / "fig_c_station_scatter.png"
 OUT_MEANS = L.PROCESSED / "fig_c_station_seasonal_means.csv"
@@ -51,7 +50,7 @@ def stats(x: pd.Series, y: pd.Series) -> dict:
 
 def main() -> int:
     t, stations = L.matched_station_table()
-    clim = station_climatology(t)
+    clim = L.station_climatology(t)
     clim["season"] = clim["month"].map(L.SEASONS)
     seas = clim.groupby(["method", "station_id", "season"])[["station", "era5", "claas3"]].mean().reset_index()
     seas.round(4).to_csv(OUT_MEANS, index=False)

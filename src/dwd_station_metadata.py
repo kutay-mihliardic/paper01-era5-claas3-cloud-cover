@@ -17,6 +17,9 @@ Zip files are cached in data/raw/dwd/zips/ (git-ignored) and only read in memory
 Outputs (data/processed/):
   dwd_cloud_method_by_station_year.csv   one row per station and year
   dwd_cloud_method_by_station.csv        one row per station (summary + metadata text)
+  dwd_instrument_share_monthly.csv       per station and month: share of valid hourly
+                                         values measured by instrument (used by
+                                         src/method_switch_test.py)
 
 Usage:
     python src/dwd_station_metadata.py
@@ -29,6 +32,7 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
+import pandas as pd
 import polars as pl
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -112,6 +116,19 @@ def hourly_by_year(zf: zipfile.ZipFile, station_id: str) -> list[dict]:
     return [{"station_id": station_id, "year": y, **v} for y, v in sorted(stats.items())]
 
 
+def instrument_share_monthly(zf: zipfile.ZipFile, station_id: str) -> pd.DataFrame:
+    """Monthly share of valid hourly V_N (0..8) values flagged 'I' (instrument), 2015-2024."""
+    name = next(n for n in zf.namelist() if n.startswith("produkt"))
+    df = pd.read_csv(io.BytesIO(zf.read(name)), sep=";", skipinitialspace=True, dtype=str)
+    df.columns = [c.strip() for c in df.columns]
+    df["V_N"] = pd.to_numeric(df["V_N"], errors="coerce")
+    df = df[df["V_N"].between(0, 8)]
+    df["time"] = pd.to_datetime(df["MESS_DATUM"].str[:6], format="%Y%m")
+    df = df[(df["time"].dt.year >= YEAR_MIN) & (df["time"].dt.year <= YEAR_MAX)]
+    share = (df["V_N_I"].str.strip() == "I").groupby(df["time"]).mean()
+    return pd.DataFrame({"station_id": station_id, "time": share.index, "instrument_share": share.values})
+
+
 def main() -> int:
     values = pl.read_csv(
         RAW_DWD / "dwd_mo_n_monthly_2015_2024.csv", schema_overrides={"station_id": pl.Utf8}
@@ -128,13 +145,15 @@ def main() -> int:
     hourly_files = listing(HOURLY_URL)
     monthly_files = listing(MONTHLY_URL)
 
-    year_rows, station_rows = [], []
+    year_rows, station_rows, share_rows = [], [], []
     for sid in ids:
         h_name = next((f for f in hourly_files if f.startswith(f"stundenwerte_N_{sid}_")), None)
         m_name = next((f for f in monthly_files if f.startswith(f"monatswerte_KL_{sid}_")), None)
 
         rows = hourly_by_year(cached_zip(HOURLY_URL, h_name), sid) if h_name else []
         year_rows.extend(rows)
+        if h_name:
+            share_rows.append(instrument_share_monthly(cached_zip(HOURLY_URL, h_name), sid))
 
         param_txt, instr_txt = "", ""
         if m_name:
@@ -188,7 +207,9 @@ def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     by_year.write_csv(OUT_DIR / "dwd_cloud_method_by_station_year.csv")
     by_station.write_csv(OUT_DIR / "dwd_cloud_method_by_station.csv")
-    print("Saved data/processed/dwd_cloud_method_by_station_year.csv and dwd_cloud_method_by_station.csv")
+    pd.concat(share_rows).round(3).to_csv(OUT_DIR / "dwd_instrument_share_monthly.csv", index=False)
+    print("Saved data/processed/dwd_cloud_method_by_station_year.csv, dwd_cloud_method_by_station.csv, "
+          "dwd_instrument_share_monthly.csv")
     return 0
 
 

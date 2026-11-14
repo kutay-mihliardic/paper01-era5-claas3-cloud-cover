@@ -18,7 +18,6 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import load_data as L  # noqa: E402
-from fig_b_seasonal_cycle import station_climatology  # noqa: E402
 
 OUT = L.PROCESSED / "table1_seasonal_differences.csv"
 PERIODS = {"2015-2024": (2015, 2024), "2015-2020 (CDR)": (2015, 2020), "2021-2024 (ICDR)": (2021, 2024)}
@@ -30,7 +29,7 @@ def main() -> int:
     rows = []
     for period, (y0, y1) in PERIODS.items():
         sub = t[(t["time"].dt.year >= y0) & (t["time"].dt.year <= y1)]
-        clim = station_climatology(sub)
+        clim = L.station_climatology(sub)
         monthly = clim.groupby(["method", "month"]).agg(
             n_stations=("station_id", "nunique"), station=("station", "mean"),
             era5=("era5", "mean"), claas3=("claas3", "mean")).reset_index()

@@ -5,7 +5,8 @@ Uses the 15 stations that changed their cloud-cover measurement method in 2015-2
 the station location serves as a reference that does not change when the station does.
 
 Rules fixed before looking at the result (methods_notes.md, D5):
-  * Switch month: from DWD hourly cloudiness, the month after the last month in which
+  * Switch month: from DWD hourly cloudiness (monthly instrument share precomputed by
+    src/dwd_station_metadata.py), the month after the last month in which
     instrument hours are <= 50 % of valid hours. Months with an instrument share
     strictly between 10 % and 90 % ("mixed") are dropped from both periods.
   * A station is used only with >= 12 months of MO_N before and >= 12 after the switch.
@@ -17,18 +18,17 @@ Rules fixed before looking at the result (methods_notes.md, D5):
   * Summary: mean DiD over stations, bootstrap 95 % CI over stations (10 000 draws,
     seed 1), number of positive DiDs and a two-sided sign test.
 
+Input (besides load_data): data/processed/dwd_instrument_share_monthly.csv
+
 Outputs:
   figures/figS2_method_switch.png
   data/processed/method_switch_test.csv           (one row per station and reference)
-  data/processed/method_switch_monthly_share.csv  (instrument share per station-month)
 
 Usage:
     python src/method_switch_test.py
 """
 
-import io
 import sys
-import zipfile
 from math import comb
 from pathlib import Path
 
@@ -44,28 +44,17 @@ import load_data as L  # noqa: E402
 
 OUT_FIG = L.REPO_ROOT / "figures" / "figS2_method_switch.png"
 OUT_CSV = L.PROCESSED / "method_switch_test.csv"
-OUT_SHARE = L.PROCESSED / "method_switch_monthly_share.csv"
-ZIP_DIR = L.RAW / "dwd" / "zips"
+SHARE_CSV = L.PROCESSED / "dwd_instrument_share_monthly.csv"
 MIN_MONTHS = 12
 MIXED = (0.10, 0.90)
 REFS = {"era5": ("ERA5", "#2a78d6"), "claas3": ("CLAAS-3", "#eb6834")}
 INK, MUTED, GRID = "#1f2328", "#6e7781", "#e6e8eb"
 
 
-def instrument_share(station_id: str) -> pd.Series:
-    """Monthly share of valid hourly V_N values flagged 'I' (instrument), 2015-2024."""
-    path = next(ZIP_DIR.glob(f"stundenwerte_N_{station_id}_*.zip"), None)
-    if path is None:
-        raise FileNotFoundError(f"hourly zip for {station_id} missing; run src/dwd_station_metadata.py")
-    zf = zipfile.ZipFile(io.BytesIO(path.read_bytes()))
-    name = next(n for n in zf.namelist() if n.startswith("produkt"))
-    df = pd.read_csv(io.BytesIO(zf.read(name)), sep=";", skipinitialspace=True, dtype=str)
-    df.columns = [c.strip() for c in df.columns]
-    df["V_N"] = pd.to_numeric(df["V_N"], errors="coerce")
-    df = df[df["V_N"].between(0, 8)]
-    df["time"] = pd.to_datetime(df["MESS_DATUM"].str[:6], format="%Y%m")
-    df = df[(df["time"].dt.year >= 2015) & (df["time"].dt.year <= 2024)]
-    return (df["V_N_I"].str.strip() == "I").groupby(df["time"]).mean()
+def load_instrument_share() -> dict[str, pd.Series]:
+    """Monthly instrument share per station, from src/dwd_station_metadata.py."""
+    df = pd.read_csv(SHARE_CSV, dtype={"station_id": str}, parse_dates=["time"])
+    return {sid: g.set_index("time")["instrument_share"] for sid, g in df.groupby("station_id")}
 
 
 def switch_month(share: pd.Series) -> pd.Timestamp:
@@ -91,11 +80,11 @@ def main() -> int:
 
     control = t[t["station_id"].isin(stable["station_id"])].groupby("time")[[f"anom_{k}" for k in grids]].mean()
 
-    rows, shares, events = [], [], []
+    all_shares = load_instrument_share()
+    rows, events = [], []
     for _, s in switching.iterrows():
         sid = s["station_id"]
-        share = instrument_share(sid)
-        shares.append(pd.DataFrame({"station_id": sid, "time": share.index, "instrument_share": share.values}))
+        share = all_shares[sid]
         sw = switch_month(share)
         mixed = share[(share > MIXED[0]) & (share < MIXED[1])].index
         ts = t[(t["station_id"] == sid) & ~t["time"].isin(mixed)].set_index("time")
@@ -114,7 +103,6 @@ def main() -> int:
                                             "value": ts[a].values - control.loc[ts.index, a].values}))
     res = pd.DataFrame(rows)
     res.round(4).to_csv(OUT_CSV, index=False)
-    pd.concat(shares).round(3).to_csv(OUT_SHARE, index=False)
 
     rng = np.random.default_rng(1)
     summary = {}
@@ -173,7 +161,7 @@ def main() -> int:
              fontsize=7, color=MUTED, ha="left", va="top")
     fig.savefig(OUT_FIG, dpi=200, bbox_inches="tight", facecolor="white")
 
-    print(f"Saved {OUT_FIG.relative_to(L.REPO_ROOT)}, {OUT_CSV.name}, {OUT_SHARE.name}")
+    print(f"Saved {OUT_FIG.relative_to(L.REPO_ROOT)}, {OUT_CSV.name}")
     print(res[res["reference"] == "era5"][["station_id", "name", "switch_month", "n_before", "n_after",
                                            "n_mixed_dropped", "used"]].to_string(index=False))
     for k, sm in summary.items():

@@ -161,3 +161,11 @@ def matched_station_table() -> tuple[pd.DataFrame, pd.DataFrame]:
     if t[["era5", "claas3"]].isna().any().any():
         raise RuntimeError("missing gridded value at a station-month")
     return t, stations
+
+
+def station_climatology(t: pd.DataFrame) -> pd.DataFrame:
+    """Per station and calendar month: mean over available years of each column."""
+    t = t.assign(month=t["time"].dt.month, d_era5=t["era5"] - t["station"],
+                 d_claas3=t["claas3"] - t["station"])
+    cols = ["station", "era5", "claas3", "d_era5", "d_claas3"]
+    return t.groupby(["method", "station_id", "month"])[cols].mean().reset_index()

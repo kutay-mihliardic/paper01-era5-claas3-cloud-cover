@@ -39,14 +39,6 @@ INK, MUTED, GRID = "#1f2328", "#6e7781", "#e6e8eb"
 MONTHS = list("JFMAMJJASOND")
 
 
-def station_climatology(t: pd.DataFrame) -> pd.DataFrame:
-    """Per station and calendar month: mean over available years of each column."""
-    t = t.assign(month=t["time"].dt.month, d_era5=t["era5"] - t["station"],
-                 d_claas3=t["claas3"] - t["station"])
-    cols = ["station", "era5", "claas3", "d_era5", "d_claas3"]
-    return t.groupby(["method", "station_id", "month"])[cols].mean().reset_index()
-
-
 def style(ax):
     ax.set_xticks(range(1, 13), MONTHS)
     ax.set_xlim(0.6, 12.4)
@@ -60,7 +52,7 @@ def style(ax):
 
 def main() -> int:
     t, stations = L.matched_station_table()
-    clim = station_climatology(t)
+    clim = L.station_climatology(t)
     agg = clim.groupby(["method", "month"]).agg(
         n_stations=("station_id", "nunique"),
         station=("station", "mean"), era5=("era5", "mean"), claas3=("claas3", "mean"),
