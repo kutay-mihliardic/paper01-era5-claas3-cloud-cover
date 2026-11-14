@@ -173,6 +173,18 @@ code, not hand-copied)
   not a systematic excess. Still needed: a mechanism that makes a point/ceilometer value
   systematically higher, and a test. Test done (D5, §8): user chose to run it now.
 
+- H3 (2026-11-14), after the D5 test: "evet destekliyor bence, cihaz daha yüksek okuyor.
+  İnsanlarda scenery ile ilgili sorun var, geceleri (ve yazın konvektif bulutlar)."
+  Supervisor feedback: (1) given the caveat in §8 (gradual rise, changing composition),
+  "consistent with" is the defensible wording, not "shows". (2) The two cited S4
+  mechanisms point in opposite directions: night → observers report *less* cloud
+  (would make instrument > observer); summer scenery effect → observers report *more*
+  convective cloud (would make instrument < observer in summer). The hypothesis must say
+  which dominates and predicts a direction per season. (3) H3 moves the question from
+  "ceilometers read too high" to "observers read too low (at night)": which referee is
+  closer to the truth is not known from our data, and the attribution (ERA5 vs CLAAS-3
+  share) depends on it. **[open: user's Discussion point]**
+
 ### Conceptual pairing (discussed 2026-11-08)
 - User: ceilometer is close to CLAAS and ERA5 ("same point"); observer looks at the whole sky.
 - Refinement given: by *kind of quantity*, ceilometer (yes/no over a point, averaged in
