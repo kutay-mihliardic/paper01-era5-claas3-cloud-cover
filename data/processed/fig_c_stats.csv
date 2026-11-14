@@ -1,0 +1,17 @@
+dataset,method,season,n,bias,rmse,r
+era5,instrument,DJF,36,-0.0347,0.0392,0.6388
+claas3,instrument,DJF,36,-0.0291,0.0409,0.1997
+era5,instrument,JJA,36,-0.0275,0.0414,0.583
+claas3,instrument,JJA,36,-0.0492,0.0649,0.3256
+era5,instrument,MAM,36,-0.0363,0.047,0.4992
+claas3,instrument,MAM,36,-0.0369,0.0528,0.2173
+era5,instrument,SON,36,-0.0324,0.0399,0.5742
+claas3,instrument,SON,36,-0.0395,0.0553,0.1432
+era5,observer,DJF,3,-0.0089,0.0155,0.7463
+claas3,observer,DJF,3,-0.0017,0.0102,0.8591
+era5,observer,JJA,3,-0.003,0.0216,0.9813
+claas3,observer,JJA,3,-0.0273,0.0336,0.971
+era5,observer,MAM,3,-0.0092,0.0224,0.812
+claas3,observer,MAM,3,-0.0084,0.0159,0.9239
+era5,observer,SON,3,0.0094,0.0174,0.9952
+claas3,observer,SON,3,0.014,0.0306,0.9457

@@ -204,3 +204,20 @@ check of one station-month matched the raw CLAAS value). `src/fig_b_seasonal_cyc
 - First render had the ERA5 and CLAAS-3 direct labels on top of each other; fixed.
 - Choosing to compare at station locations with matched months (instead of box means)
   is an analysis design choice I made; documented in the notes so the user can object.
+
+## 2026-11-14 — Phase 4, session 2 (continued): figure (c) and break test
+
+**Done:** `src/fig_c_station_scatter.py` → `figures/fig_c_station_scatter.png` (+ two CSVs);
+`src/break_test_2021.py` → `figures/figS1_break_test_2021.png` (+ CSV). Results in
+`methods_notes.md` §8.
+
+**Where I went wrong / was uncertain:**
+- When I taught the D3 control-series test I did not ask the user to fix in advance
+  what counts as "a jump" (threshold and which series). The result is borderline
+  (CLAAS−station p = 0.09, CLAAS−ERA5 p = 0.02), so the decision is now harder to make
+  without seeing the result. Caught when reading the output; reported to the user
+  instead of applying D3b myself.
+- The test assumes a step at 2021-01; the series looks more like a gradual decline.
+  A step test is not designed for that; noted, not changed.
+- fig (c) imports `station_climatology` from the fig (b) script; should move to
+  `load_data.py` in phase 6.

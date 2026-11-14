@@ -38,9 +38,9 @@ station rules in §4.
 | 4.1 | One loader, all data in fraction 0–1, station rules D1/D2 in code (`src/load_data.py`) | done |
 | 4.2 | Fig (a): 10-year mean maps (`src/fig_a_mean_maps.py`) | draft done |
 | 4.3 | Fig (b): seasonal cycle at the stations, matched sampling (`src/fig_b_seasonal_cycle.py`) | draft done |
-| 4.4 | Fig (c): ERA5 and CLAAS-3 at station locations vs station values, by season, instrument/observer separate | next |
-| 4.5 | Break test (D3): CLAAS−station vs ERA5−station before/after 2021; if CLAAS-only jump → report periods separately (D3b) | — |
-| 4.6 | Table of seasonal differences — the numbers that answer the question | — |
+| 4.4 | Fig (c): station seasonal means, grid vs station (`src/fig_c_station_scatter.py`) | draft done |
+| 4.5 | Break test (`src/break_test_2021.py`, fig S1) | done; threshold for "jump" **open** → D3b pending |
+| 4.6 | Table of seasonal differences — the numbers that answer the question | numbers exist (§8 fig b, fig c); final table after D3b |
 
 **How the notes map onto the paper:** Introduction ← question (§0) · Data ← §1–2 ·
 Methods ← §3–4 · Results ← §8 + figures · Discussion ← user's hypotheses (§5) and
@@ -220,3 +220,38 @@ Descriptive observations **[verified]**:
   within ±0.01 in all other months.
 - Inter-station spread (25–75 %) of the differences is 0.02–0.06 wide, i.e. comparable
   to or larger than the mean differences.
+
+### Fig (c) `figures/fig_c_station_scatter.png` — station seasonal means, grid vs station
+Numbers: `data/processed/fig_c_station_seasonal_means.csv`, `fig_c_stats.csv`. Statistics
+across the 36 instrument stations (bias = grid − station): **[verified]**
+
+| Season | ERA5 bias | ERA5 RMSE | ERA5 r | CLAAS bias | CLAAS RMSE | CLAAS r |
+|---|---|---|---|---|---|---|
+| DJF | −0.035 | 0.039 | 0.64 | −0.029 | 0.041 | 0.20 |
+| MAM | −0.036 | 0.047 | 0.50 | −0.037 | 0.053 | 0.22 |
+| JJA | −0.027 | 0.041 | 0.58 | −0.049 | 0.065 | 0.33 |
+| SON | −0.032 | 0.040 | 0.57 | −0.040 | 0.055 | 0.14 |
+
+- Across stations, ERA5 tracks the station-to-station differences more closely
+  (r 0.50–0.64) than CLAAS-3 (r 0.14–0.33) in every season. **[verified]**
+- Largest positive CLAAS−station (mean of seasons): Schönhagen (Ostseebad) +0.057,
+  Greifswalder Oie (island) +0.047, Boltenhagen +0.027 — Baltic coast/island sites.
+  Most negative: Quickborn −0.086, Schwerin −0.085, Marnitz −0.083. **[verified]**
+- Observer stations (n = 3): |bias| ≤ 0.027 in all seasons (r not meaningful with n = 3).
+
+### Break test (D3) `figures/figS1_break_test_2021.png`, `data/processed/break_test_2021.csv`
+Instrument stations, matched months, station seasonal cycle of each difference
+removed, averaged over stations (10–35 stations per month). Shift = mean(2021–2024) −
+mean(2015–2020); exact permutation test over whole years (210 splits). **[verified]**
+
+| Series | Shift | p |
+|---|---|---|
+| CLAAS-3 − station | −0.017 | 0.09 |
+| ERA5 − station (control) | −0.001 | 0.96 |
+| CLAAS-3 − ERA5 (at stations) | −0.016 | 0.02 |
+
+- Visual: the CLAAS-3 − station running mean declines gradually from about 2020 and
+  is most negative in 2024; it does not look like a single step at 2021-01. **[verified, visual]**
+- **[open]** D3 did not fix in advance what counts as "a jump is found" (e.g. p < 0.05,
+  and on which series). With p < 0.05 on CLAAS−station (the series named in D3) → no;
+  on CLAAS−ERA5 → yes. User must decide before D3b is applied.
