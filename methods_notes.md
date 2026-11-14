@@ -161,6 +161,18 @@ code, not hand-copied)
 - H1: The slanted satellite view may cause CLAAS-3 to overestimate cloud cover.
   Still needed: mechanism, which cloud types, and a test with the available data.
 
+- H2 (2026-11-14), on why the 36 instrument stations read higher than both ERA5 and
+  CLAAS-3 in every month: "ceilometre sadece tepesine baktığı için fazla okuyor olabilir,
+  yani gökyüzünün çok küçük bir kısmını gözledikleri için hassasiyetin bozulma riski
+  önemli diyebiliriz" (based on S4).
+  Supervisor feedback: S4 talks about *precision* (random error); the observed offset is
+  a *bias* (same sign in all 12 months and across stations). Random error from a small
+  sky sample averages out over 10 years × 36 stations, so H2 as stated predicts noise,
+  not a systematic excess. Still needed: a mechanism that makes a point/ceilometer value
+  systematically higher, and a test. Candidate test with our own data: the 15 stations
+  that switched observer → instrument (excluded by D2a) — compare station−ERA5 before
+  and after each switch (natural experiment). **[open: user decides now vs next note]**
+
 ### Conceptual pairing (discussed 2026-11-08)
 - User: ceilometer is close to CLAAS and ERA5 ("same point"); observer looks at the whole sky.
 - Refinement given: by *kind of quantity*, ceilometer (yes/no over a point, averaged in
