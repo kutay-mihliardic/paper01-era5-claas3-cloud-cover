@@ -107,6 +107,17 @@ project. Check before citing.
   parametrization schemes inside. It inherits what it learned — including the
   strengths and weaknesses of the IFS/ERA5 training data.
 
+**ERA5 clouds vs today's IFS clouds**
+- Same kind of physics: ERA5 clouds come from the IFS cloud scheme.
+- But not identical to today's operational IFS: ERA5 uses one IFS version (2016),
+  **frozen** for the whole record, at ~31 km; operational IFS is updated every year
+  (cloud and convection schemes included) and runs at ~9 km for forecasting.
+- Why freeze it? **Homogeneity** — the same reason we dropped DWD stations that
+  switched method: if the model changed during the record, a change in ERA5 over time
+  could come from the model update instead of the climate.
+- Still [to verify]: how directly cloud observations enter ERA5 (§3 of methods_notes).
+- 📌 Review again before the paper is submitted (user's request, 2026-11-17).
+
 **Why parametrization exists**
 - A model only "sees" the average state of each grid box. Processes smaller than a box
   (individual cumulus clouds, turbulence, cloud droplets) cannot be computed directly.

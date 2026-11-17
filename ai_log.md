@@ -330,3 +330,4 @@ bc03028 locally.
 
 ## 2026-11-17 — Exam preparation
 - User asked to look at notes before answering the 10 exam questions. Created `study_notes.md` (the teaching points in one place, as promised earlier). Read `methods_notes.md` section list at session start (rule 10).
+- Added to study_notes §7: ERA5 vs today's IFS (frozen 2016 version, homogeneity). User asked to review §7 again before submission; reminder recorded in methods_notes §6b.

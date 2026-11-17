@@ -247,6 +247,11 @@ these points before submission. Evidence strength is given for each point.
 2. ERA5 is an area fraction, CLAAS a frequency — when do their monthly means converge?
 3. Observers also look at slant angles toward the horizon — does that connect to H1?
 
+## 6b. Before submission (user's reminders)
+
+- Review `study_notes.md` §7 (IFS / ERA5 / AIFS, frozen model and homogeneity,
+  parametrization) with the user again before the paper is submitted (2026-11-17).
+
 ## 7. Points the paper will need to state (methods)
 
 - Units of the three datasets and the conversion used.
