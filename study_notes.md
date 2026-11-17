@@ -13,8 +13,19 @@ The teaching points from the project in one place. Details, numbers and sources:
 | Time | Hourly → monthly mean | 15-min → daily → monthly (mean of daily means) | Hourly → daily → monthly (verified 24-h mean) |
 | Unit | 0–1 | % | octas (0–8) |
 
-User's own pairing: ceilometer ↔ CLAAS (both a frequency), observer ↔ ERA5 (both an
-area fraction). ⚠ Claude's teaching statement, not yet checked in literature.
+### Four ways of seeing clouds: frequency vs area fraction
+
+- **Ceilometer:** asks at every moment, at one point, "is there cloud overhead — yes or
+  no?", then averages over time. Result: a **frequency**.
+- **CLAAS-3:** classifies each pixel at every scan as "cloudy or clear" (binary), then
+  averages over time. Result: also a **frequency**.
+- **Observer:** estimates how much of the sky is covered at that moment. Result: an
+  **area fraction**.
+- **ERA5:** gives how much of the grid box is covered. Result: also an **area fraction**.
+
+So: ceilometer ↔ CLAAS-3 (frequency), observer ↔ ERA5 (area fraction). The spatial
+footprints still differ: a point, a ~pixel, the sky dome, a ~25 km box.
+⚠ Teaching statement, not yet checked in literature.
 
 **Viewing angle:** SEVIRI sees Northern Germany at 60–65° from vertical. CM SAF: "CFC is
 overestimated at high viewing angles" (S3).
