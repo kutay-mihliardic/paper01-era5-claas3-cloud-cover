@@ -1,0 +1,4 @@
+series,label,mean_2015_2020,mean_2021_2024,shift,p_permutation,n_permutations
+claas3_minus_station,CLAAS-3 − station,0.0072,-0.0101,-0.0173,0.0905,210
+era5_minus_station,ERA5 − station,0.0007,-0.0002,-0.0009,0.9571,210
+claas3_minus_era5,CLAAS-3 − ERA5 (at stations),0.0065,-0.0099,-0.0163,0.0238,210

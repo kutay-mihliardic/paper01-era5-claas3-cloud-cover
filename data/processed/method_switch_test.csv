@@ -1,0 +1,31 @@
+station_id,name,reference,switch_month,n_before,n_after,n_mixed_dropped,used,shift,control_shift,did
+00164,Angermünde,era5,2016-10-01,12,68,32,True,0.0445,0.0338,0.0107
+00164,Angermünde,claas3,2016-10-01,12,68,32,True,0.0553,0.0326,0.0227
+00183,Arkona,era5,2015-10-01,0,85,30,False,,,
+00183,Arkona,claas3,2015-10-01,0,85,30,False,,,
+00691,Bremen,era5,2022-06-01,89,29,0,True,0.0421,0.004,0.0381
+00691,Bremen,claas3,2022-06-01,89,29,0,True,0.0596,0.0188,0.0408
+00891,Cuxhaven,era5,2020-02-01,19,55,33,True,0.0036,-0.0076,0.0112
+00891,Cuxhaven,claas3,2020-02-01,19,55,33,True,-0.0019,0.0042,-0.0061
+01757,Greifswald,era5,2020-11-01,70,39,4,True,0.0453,0.002,0.0433
+01757,Greifswald,claas3,2020-11-01,70,39,4,True,0.0562,0.0178,0.0384
+01766,Münster/Osnabrück,era5,2022-09-01,92,22,2,True,0.0452,0.0135,0.0317
+01766,Münster/Osnabrück,claas3,2022-09-01,92,22,2,True,0.0465,0.0258,0.0207
+01975,Hamburg-Fuhlsbüttel,era5,2022-06-01,87,29,1,True,0.0363,0.0055,0.0309
+01975,Hamburg-Fuhlsbüttel,claas3,2022-06-01,87,29,1,True,0.051,0.0236,0.0274
+02014,Hannover,era5,2022-06-01,87,27,0,True,0.0364,0.0064,0.03
+02014,Hannover,claas3,2022-06-01,87,27,0,True,0.0571,0.0268,0.0304
+03015,Lindenberg,era5,2020-04-01,62,50,1,True,0.0177,0.0015,0.0161
+03015,Lindenberg,claas3,2020-04-01,62,50,1,True,0.0335,0.0129,0.0206
+03126,Magdeburg,era5,2017-06-01,0,74,29,False,,,
+03126,Magdeburg,claas3,2017-06-01,0,74,29,False,,,
+03987,Potsdam,era5,2020-10-01,60,43,11,True,0.0399,0.003,0.0369
+03987,Potsdam,claas3,2020-10-01,60,43,11,True,0.0624,0.0157,0.0467
+04271,Rostock-Warnemünde,era5,2016-11-01,20,86,5,True,0.0053,0.022,-0.0167
+04271,Rostock-Warnemünde,claas3,2016-11-01,20,86,5,True,0.0006,0.0256,-0.025
+04393,Sankt Peter-Ording,era5,2019-01-01,5,67,40,False,,,
+04393,Sankt Peter-Ording,claas3,2019-01-01,5,67,40,False,,,
+04466,Schleswig,era5,2019-09-01,39,57,19,True,0.0462,0.0091,0.0372
+04466,Schleswig,claas3,2019-09-01,39,57,19,True,0.0434,0.0115,0.0319
+04642,Seehausen,era5,2024-06-01,93,5,10,False,,,
+04642,Seehausen,claas3,2024-06-01,93,5,10,False,,,

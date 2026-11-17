@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Extracted CLAAS-3 NetCDF files (reproduced from the committed .tar archives by src/extract_claas3.py)
+data/raw/claas3/*.nc
+
+# Cached DWD station zips (re-downloaded by src/dwd_station_metadata.py)
+data/raw/dwd/zips/
+
+# Python bytecode
+src/__pycache__/
