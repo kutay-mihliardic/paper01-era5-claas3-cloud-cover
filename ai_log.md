@@ -331,3 +331,21 @@ bc03028 locally.
 ## 2026-11-17 — Exam preparation
 - User asked to look at notes before answering the 10 exam questions. Created `study_notes.md` (the teaching points in one place, as promised earlier). Read `methods_notes.md` section list at session start (rule 10).
 - Added to study_notes §7: ERA5 vs today's IFS (frozen 2016 version, homogeneity). User asked to review §7 again before submission; reminder recorded in methods_notes §6b.
+
+## 2026-11-17 — Phase 7: draft v0.1
+
+**Asked:** User said writing section by section with them would cost too much time and
+asked me to write the paper. CLAUDE.md assigns writing to the user; the user decided
+otherwise for this note.
+
+**Done:** `paper/draft.md` (~3000 words: abstract, sections 1–6, Table 1, figure list,
+references) using only numbers from `methods_notes.md` / `data/processed/` and the
+sources read in this project. Unsourced or unchecked statements are marked [REF] or
+[CHECK] instead of being filled in.
+
+**Where I went wrong / was uncertain:**
+- First version of Table 1 computed ERA5 − CLAAS-3 from rounded columns (MAM 0.000,
+  JJA +0.021, SON +0.008 instead of +0.001, +0.022, +0.007). Caught by checking the table
+  against the CSV before sending; fixed.
+- The introduction needs one reference for the importance of clouds that I could not
+  verify here ([REF]).
