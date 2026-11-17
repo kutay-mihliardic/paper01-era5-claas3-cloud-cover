@@ -310,3 +310,19 @@ hashes with the outputs before packaging: all 13 outputs identical, PNGs include
   git-ignored files; found while planning the clean-clone test.
 - Earlier in this session I added an "AI use" section to the paper skeleton and pushed
   the topic more than the user wanted; removed at the user's request.
+
+## 2026-11-17 — Phase 6: PR, merge, release tag
+
+**Asked:** Open the PR to main (option a), then tag v1.0.0 after the user merged it.
+
+**Done:** Read `methods_notes.md` at session start (rule 10). Opened PR #1; the user
+merged it (merge commit bc03028). Re-ran `make all` on a clean checkout of main: all
+outputs regenerated identical to the committed files. Created annotated tag `v1.0.0` on
+bc03028 locally.
+
+**Where I went wrong / was uncertain:**
+- Pushing the tag failed five times ("unexpected disconnect while reading sideband
+  packet"), while branch pushes work and a dry run succeeds; most likely this
+  environment's git connection does not accept tag pushes. I retried with backoff first
+  (as for a network error) before concluding it is not transient. The user creates the
+  tag as a GitHub release instead.

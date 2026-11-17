@@ -28,7 +28,7 @@ station rules in §4.
 | 3 Data: download, units, ranges, referee check, station rules | Claude | **done 2026-11-08** |
 | 4 Analysis: figures | Claude | **done 2026-11-14** (user approved figures as final) |
 | 5 Interpretation | user (+ Claude at user's request, §5b) | closed 2026-11-14 when the user moved to phase 6; **analysis frozen** |
-| 6 Code packaging | Claude | done except the release tag (README, environment.yml, requirements.txt, `make all` / `run.py`; clean-clone run reproduced all outputs bit-for-bit) |
+| 6 Code packaging | Claude | merged to main 2026-11-17 (PR #1, bc03028); `make all` re-verified on main; tag `v1.0.0` → user creates it as a GitHub release (tag push blocked here) |
 | 7–9 Writing, preprint, Substack | user | skeleton: `paper/skeleton.md` |
 
 **Phase 4 steps**
