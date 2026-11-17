@@ -87,3 +87,50 @@ overestimated at high viewing angles" (S3).
 - `make all` reproduces every figure and table from the committed data.
 - Release **v1.0.0** freezes the exact code + data behind the paper's numbers; `main`
   can keep changing. The paper cites the release, not the branch.
+
+## 7. Background (not part of the paper): how models make clouds
+
+⚠ General background from Claude's knowledge, not checked against sources in this
+project. Check before citing.
+
+**IFS, ERA5, AIFS — who is who**
+- **IFS** (Integrated Forecasting System): ECMWF's physics-based weather model. It
+  solves the equations of motion, thermodynamics and moisture on a grid.
+- **ERA5** is not a separate model and does not "learn" from IFS: it *is* IFS (a 2016
+  version, about 31 km, 137 levels) run over past decades with **data assimilation**
+  — every 12 h the model's short forecast is combined with the observations available
+  then. Clouds in ERA5 therefore come from the IFS cloud scheme, steered indirectly by
+  the assimilated observations (temperature, humidity, wind, …).
+- **AIFS** (Artificial Intelligence Forecasting System): ECMWF's machine-learning
+  forecast model, trained on ERA5 and then on operational IFS analyses. It learns
+  statistical relationships from that data; it has **no** physics equations and **no**
+  parametrization schemes inside. It inherits what it learned — including the
+  strengths and weaknesses of the IFS/ERA5 training data.
+
+**Why parametrization exists**
+- A model only "sees" the average state of each grid box. Processes smaller than a box
+  (individual cumulus clouds, turbulence, cloud droplets) cannot be computed directly.
+- A **parametrization** describes the net effect of these sub-grid processes on the
+  box, from the resolved variables (temperature, humidity, wind). It is not made up:
+  it is built from physics (e.g. a rising, mixing air parcel), but it needs
+  simplifying assumptions and some numbers that are tuned against observations and
+  high-resolution simulations — that is where uncertainty enters.
+
+**Convective parametrization — when is it used?**
+- **Coarse models (> ~10 km, e.g. ERA5 at ~31 km):** convective updrafts are only
+  hundreds of metres to a few km wide → **always parametrized**. A mass-flux scheme
+  decides *if* convection starts (trigger), *how strong* it is (closure, e.g. using
+  instability/CAPE) and *how much* air mixes in (entrainment) — these choices are the
+  uncertain part.
+- **Convection-permitting models (≲ 3–4 km, e.g. DWD's ICON-D2 at ~2 km):** deep
+  convection is resolved explicitly; shallow convection is still parametrized.
+- **"Grey zone" (~1–10 km):** convection is partly resolved, partly not — the hardest
+  range for scheme design.
+
+**Cloud scheme and total cloud cover (link to §1)**
+- In IFS, cloud fraction is a model variable in every layer (with cloud liquid and ice);
+  convection feeds condensate into it.
+- `tcc` combines the layer cloud fractions into one number with an **overlap
+  assumption** (how clouds in different layers stack — e.g. maximally where adjacent,
+  randomly otherwise). Different overlap choices give different `tcc` from the same
+  layers.
