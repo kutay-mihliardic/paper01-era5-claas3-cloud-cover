@@ -41,4 +41,4 @@ You handle phases 3, 4 and 6 of a 9-phase cycle. Phases 1, 2, 5, 7, 8, 9 (questi
 - Three different units (fraction, percent, octas): convert all to one before any comparison and report the conversion.
 - Planned figures: (a) side-by-side 10-year mean maps, (b) seasonal cycle of all three, (c) ERA5 and CLAAS-3 sampled at station locations vs station values
 - Data on hand: `data/raw/claas3/` holds two CM SAF order archives (.tar): CDR v004 2015-01..2020-12 (72 monthly files) and ICDR v004i1 2021-01..2024-12 (48 files), already cut to 51.5–56°N, 5.5–15°E at 0.05°. Watch for a possible discontinuity at Jan 2021 (CDR → ICDR).
-- Current phase: 6 done 2026-11-17 — PR #1 merged (bc03028), release v1.0.0 published on main. Next: phase 7 (writing, user); before submission the user wants to be examined on the content.
+- Current phase: 7 (Writing, user) — started 2026-11-17. Claude's role: guide and critique section by section; the user writes the sentences. Skeleton: `paper/skeleton.md`. Before submission: review `study_notes.md` §7 (methods_notes §6b).

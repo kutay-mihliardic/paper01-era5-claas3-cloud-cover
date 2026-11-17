@@ -29,7 +29,7 @@ station rules in §4.
 | 4 Analysis: figures | Claude | **done 2026-11-14** (user approved figures as final) |
 | 5 Interpretation | user (+ Claude at user's request, §5b) | closed 2026-11-14 when the user moved to phase 6; **analysis frozen** |
 | 6 Code packaging | Claude | **done 2026-11-17**: PR #1 merged (bc03028), `make all` re-verified on main, release v1.0.0 published by the user |
-| 7–9 Writing, preprint, Substack | user | skeleton: `paper/skeleton.md` |
+| 7–9 Writing, preprint, Substack | user | **phase 7 started 2026-11-17**; skeleton: `paper/skeleton.md`; order: Results → Data/Methods → Discussion → Introduction → Abstract |
 
 **Phase 4 steps**
 
