@@ -327,3 +327,6 @@ bc03028 locally.
   (as for a network error) before concluding it is not transient. The user creates the
   tag as a GitHub release instead.
 - Release v1.0.0 published by the user via the GitHub UI on bc03028 (verified with git ls-remote). Phase 6 gate passed.
+
+## 2026-11-17 — Exam preparation
+- User asked to look at notes before answering the 10 exam questions. Created `study_notes.md` (the teaching points in one place, as promised earlier). Read `methods_notes.md` section list at session start (rule 10).
