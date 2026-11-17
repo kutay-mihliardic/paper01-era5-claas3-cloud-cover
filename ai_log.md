@@ -326,3 +326,4 @@ bc03028 locally.
   environment's git connection does not accept tag pushes. I retried with backoff first
   (as for a network error) before concluding it is not transient. The user creates the
   tag as a GitHub release instead.
+- Release v1.0.0 published by the user via the GitHub UI on bc03028 (verified with git ls-remote). Phase 6 gate passed.
