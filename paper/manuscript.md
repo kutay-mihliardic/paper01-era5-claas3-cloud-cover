@@ -1,6 +1,6 @@
 # Model error or satellite artefact? A three-way comparison of cloud cover over Northern Germany
 
-**[AUTHOR NAME]**<sup>1</sup>
+**O. Kutay Mihliardic**<sup>1</sup>
 
 <sup>1</sup> [Affiliation or "Independent researcher"], [City, Country] · ORCID: [0000-0000-0000-0000]
 

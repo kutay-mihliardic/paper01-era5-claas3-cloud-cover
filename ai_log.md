@@ -442,3 +442,4 @@ numbers or claims changed. PDF rebuilt.
 - User asked why figures were at the end. Moved Figures 1–3 into the Results sections
   where they are first discussed; S1/S2 under "Supporting Information" (AGU's term) on a
   new page; CSS keeps headings with their text. No text or numbers changed.
+- Author name set to "O. Kutay Mihliardic" (user's choice; Natural Hazards 2024 byline is "Omer Kutay Mihliardic", both cite as Mihliardic, O. K.). Affiliation and ORCID still placeholders.
