@@ -2,7 +2,7 @@
 
 **O. Kutay Mihliardic**<sup>1</sup>
 
-<sup>1</sup> [Affiliation or "Independent researcher"], [City, Country] · ORCID: [0000-0000-0000-0000]
+<sup>1</sup> [Affiliation or "Independent researcher"], [City, Country] · ORCID: [0000-0002-3269-302X](https://orcid.org/0000-0002-3269-302X)
 
 Correspondence: [e-mail]
 

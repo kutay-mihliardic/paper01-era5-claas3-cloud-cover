@@ -443,3 +443,4 @@ numbers or claims changed. PDF rebuilt.
   where they are first discussed; S1/S2 under "Supporting Information" (AGU's term) on a
   new page; CSS keeps headings with their text. No text or numbers changed.
 - Author name set to "O. Kutay Mihliardic" (user's choice; Natural Hazards 2024 byline is "Omer Kutay Mihliardic", both cite as Mihliardic, O. K.). Affiliation and ORCID still placeholders.
+- ORCID 0000-0002-3269-302X added (read from the user's screenshot; check digit verified).
