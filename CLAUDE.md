@@ -36,9 +36,9 @@ You handle phases 3, 4 and 6 of a 9-phase cycle. Phases 1, 2, 5, 7, 8, 9 (questi
 - Region: 52–55.5°N, 6–14.5°E (land-focused; seas secondary)
 - Period: 2015–2024, monthly means
 - Model: ERA5 total cloud cover (`tcc`, 0–1 fraction), Copernicus CDS via `cdsapi`
-- Satellite: CM SAF CLAAS-3 cloud fractional cover (CFC, likely percent — verify)
+- Satellite: CM SAF CLAAS-3 cloud fractional cover (CFC, percent — verified)
 - Referee: DWD station monthly mean cloud cover `MO_N` (octas, 0–8), opendata.dwd.de, via the `wetterdienst` Python package
 - Three different units (fraction, percent, octas): convert all to one before any comparison and report the conversion.
 - Planned figures: (a) side-by-side 10-year mean maps, (b) seasonal cycle of all three, (c) ERA5 and CLAAS-3 sampled at station locations vs station values
-- Data on hand: `data/raw/claas3/` holds two CM SAF order archives (.tar): CDR v004 2015-01..2020-12 (72 monthly files) and ICDR v004i1 2021-01..2024-12 (48 files), already cut to 51.5–56°N, 5.5–15°E at 0.05°. Watch for a possible discontinuity at Jan 2021 (CDR → ICDR).
+- Data on hand: `data/raw/claas3/` holds two CM SAF order archives (.tar) of CLAAS-3 edition 3 (DOI V003, product version 3.0; the "004" in the file names is not documented as a version): CDR 2015-01..2020-12 (72 monthly files) and ICDR 2021-01..2024-12 (48 files), already cut to 51.5–56°N, 5.5–15°E at 0.05°. Watch for a possible discontinuity at Jan 2021 (CDR → ICDR).
 - Current phase: 7 (Writing) — at the user's request Claude wrote full draft v0.1 (`paper/draft.md`, 2026-11-17); the user reviews and edits. Open: [REF]/[CHECK] markers in the draft; before submission review `study_notes.md` §7 (methods_notes §6b).

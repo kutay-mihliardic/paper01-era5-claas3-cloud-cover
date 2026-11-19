@@ -1,8 +1,8 @@
 # Model error or satellite artefact? A three-way comparison of cloud cover over Northern Germany
 
-*Draft v0.2 (2026-11-19). Marker: **[REF]** = citation still to be found. All [CHECK]
-items of v0.1 are resolved with sources. All numbers are from `methods_notes.md` and
-`data/processed/` (release v1.0.0).*
+*Draft v0.3 (2026-11-19). No open [REF] or [CHECK] markers; references verified via
+Crossref, ECMWF and CM SAF documentation. All numbers are from `methods_notes.md` and
+`data/processed/` (release v1.0.0). Remove this line before submission.*
 
 ## Abstract
 
@@ -24,9 +24,10 @@ measures cloud cover.
 
 ## 1. Introduction
 
-Clouds control a large part of the radiation budget at the surface and at the top of
-the atmosphere, and total cloud cover is one of the most basic quantities used to
-evaluate weather and climate models [REF]. Two widely used long-term records of cloud
+Clouds strongly modulate the Earth's radiation budget (Ramanathan et al., 1989), and
+cloud–climate feedbacks remain one of the least understood parts of the climate system
+(Stephens, 2005). Total cloud cover is therefore one of the most basic quantities
+against which weather and climate models are evaluated. Two widely used long-term records of cloud
 cover are the ERA5 reanalysis (Hersbach et al., 2020) and the CM SAF Cloud property
 dAtAset using SEVIRI, edition 3 (CLAAS-3; Meirink et al., 2022), derived from the
 geostationary Meteosat satellites. They are produced in fundamentally different ways —
@@ -300,11 +301,14 @@ Natural Earth.
 - Copernicus Climate Change Service (2023): ERA5 monthly averaged data on single levels
   from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS),
   doi:10.24381/cds.f17050d7 (accessed on 8 November 2026).
-- Hersbach, H., et al. (2020): The ERA5 global reanalysis. Q. J. R. Meteorol. Soc.,
-  doi:10.1002/qj.3803.
+- Hersbach, H., Bell, B., Berrisford, P., et al. (2020): The ERA5 global reanalysis.
+  Q. J. R. Meteorol. Soc., 146(730), 1999–2049, doi:10.1002/qj.3803.
 - Meirink, J. F., Karlsson, K.-G., Solodovnik, I., Hüser, I., Benas, N., Johansson, E.,
   Håkansson, N., Stengel, M., Selbach, N., Schröder, M., Hollmann, R. (2022): CLAAS-3: CM
   SAF CLoud property dAtAset using SEVIRI – Edition 3, Satellite Application Facility on
   Climate Monitoring, doi:10.5676/EUM_SAF_CM/CLAAS/V003.
-- [REF] Introduction, first sentence: importance of clouds for the radiation budget /
-  model evaluation.
+- Ramanathan, V., Cess, R. D., Harrison, E. F., Minnis, P., Barkstrom, B. R., Ahmad, E.,
+  Hartmann, D. (1989): Cloud-radiative forcing and climate: results from the Earth
+  Radiation Budget Experiment. Science, 243(4887), 57–63, doi:10.1126/science.243.4887.57.
+- Stephens, G. L. (2005): Cloud feedbacks in the climate system: a critical review.
+  J. Climate, 18(2), 237–273, doi:10.1175/JCLI-3243.1.

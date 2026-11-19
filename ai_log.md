@@ -367,3 +367,19 @@ remains.
 - CLAUDE.md and my early notes called the CLAAS-3 archives "v004" from the file names;
   the documented version is edition 3 (DOI V003), product version 3.0. The meaning of
   "004" in the file names is still unknown, but it is not needed for the paper.
+
+## 2026-11-19 — Last [REF] and CLAUDE.md fix
+
+**Asked:** Find the introduction reference; correct CLAUDE.md.
+
+**Done:** CLAUDE.md: CLAAS-3 described as edition 3 (DOI V003, product version 3.0) instead
+of "v004"; CFC unit marked as verified percent. Added api.crossref.org (user-approved card)
+and verified Ramanathan et al. (1989) and Stephens (2005) — metadata and abstracts —
+plus the full Hersbach et al. (2020) reference. Rewrote the first introduction sentence
+so each source is cited only for what its abstract says. Draft → v0.3, no open markers.
+
+**Where I went wrong / was uncertain:**
+- My first CLAUDE.md wording said the "004" "is not a product version"; we only know it
+  is not documented as one. Softened before committing.
+- The original introduction sentence claimed more (surface budget, model evaluation)
+  than either reference states; the claim was narrowed to match the sources.

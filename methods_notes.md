@@ -414,6 +414,12 @@ phase-5 interpretation; Claude has not linked them to our results.
   "monthly averaged" in the CDS) "are created from all the hourly [...] data in the
   month"; for analysis parameters "from data with a validity time in the month, between
   00 and 23 UTC".
+- **S6** Introduction references, metadata and abstracts checked via Crossref
+  (api.crossref.org), 2026-11-19: Ramanathan et al. (1989), Science 243(4887), 57–63,
+  doi:10.1126/science.243.4887.57 (ERBE cloud-radiative forcing; used for "clouds strongly
+  modulate the radiation budget"); Stephens (2005), J. Climate 18(2), 237–273,
+  doi:10.1175/JCLI-3243.1 (review; abstract: "inherent lack of understanding" of cloud
+  feedbacks). Hersbach et al. (2020) full reference: QJRMS 146(730), 1999–2049.
 - Not downloaded/committed: the PDFs themselves (EUMETSAT documents); URLs above.
 
 ### Method-switch test (D5) `figures/figS2_method_switch.png`, `data/processed/method_switch_test.csv`
