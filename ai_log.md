@@ -413,3 +413,14 @@ Submission checklist in `methods_notes.md` §6b.
   links) are from my knowledge, not checked against AGU's current author guidelines here;
   flagged for the user to check in the submission system.
 - I cannot upload the preprint myself (needs the user's account and author consent).
+
+## 2026-11-19 — Style edit of the manuscript
+
+**Asked:** Remove stylistic tells such as long dashes.
+
+**Done:** Replaced all 6 em dashes with commas, colons or separate sentences; removed the
+repeated "therefore" (6×), "robust" (3×) and "fundamentally"; converted bold run-in
+paragraph headings in Methods and Discussion into numbered subsections (3.1–3.6,
+5.1–5.5); section 4.4 renamed "Sensitivity to the satellite record period". En dashes in
+ranges (2015–2024) and minus signs in differences were kept (correct typography). No
+numbers or claims changed. PDF rebuilt.
