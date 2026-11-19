@@ -1,8 +1,12 @@
 # Model error or satellite artefact? A three-way comparison of cloud cover over Northern Germany
 
-*Draft v0.3 (2026-11-19). No open [REF] or [CHECK] markers; references verified via
-Crossref, ECMWF and CM SAF documentation. All numbers are from `methods_notes.md` and
-`data/processed/` (release v1.0.0). Remove this line before submission.*
+**[AUTHOR NAME]**<sup>1</sup>
+
+<sup>1</sup> [Affiliation or "Independent researcher"], [City, Country] · ORCID: [0000-0000-0000-0000]
+
+Correspondence: [e-mail]
+
+*Manuscript v1.0, 19 November 2026*
 
 ## Abstract
 
@@ -16,7 +20,7 @@ CLAAS-3 is lower; summer remains the season of largest difference in both the
 2015–2020 and the 2021–2024 parts of the satellite record. Compared with the 36 stations
 that measure cloud cover with ceilometers, both datasets are lower in every season, by
 0.03–0.05. The three stations with human observers agree with both datasets to within
-about 0.03. At 11 stations that switched from observer to ceilometer during the period,
+0.03 in every season. At 11 stations that switched from observer to ceilometer during the period,
 the station value rises by 0.024 (about 0.2 octa) relative to ERA5 after the switch. The
 summer difference between model and satellite is therefore a robust result, whereas the
 question of which of the two is closer to the truth depends on how the ground reference
@@ -56,7 +60,8 @@ We use ERA5 monthly averaged reanalysis of total cloud cover (`tcc`) on single l
 0.25° resolution (Copernicus Climate Change Service, 2023). `tcc` is "the proportion of a
 grid box covered by cloud", calculated "from the cloud occurring at different model
 levels through the atmosphere", with "assumptions [...] about the degree of
-overlap/randomness between clouds at different heights" (CDS variable description). It is
+overlap/randomness between clouds at different heights" (Copernicus Climate Change
+Service, 2023). It is
 therefore a model quantity: ERA5 is produced with 4D-Var data assimilation and forecasts
 of one fixed version (cycle CY41R2) of the ECMWF Integrated Forecasting System (IFS), at
 about 31 km horizontal resolution with 137 model levels (Hersbach et al., 2020; ECMWF,
@@ -170,8 +175,7 @@ the ERA5 − CLAAS-3 difference in the two parts of the satellite record.
 | JJA | 0.639 | 0.611 | 0.590 | −0.027 | −0.049 | +0.022 | +0.012 | +0.035 |
 | SON | 0.741 | 0.709 | 0.701 | −0.032 | −0.040 | +0.007 | −0.005 | +0.021 |
 
-*Differences are computed from unrounded values (`data/processed/table1_seasonal_differences.csv`)
-and may differ by 0.001 from the difference of the rounded columns.*
+*Differences are computed from unrounded values and may differ by 0.001 from the difference of the rounded columns.*
 
 ### 4.3 Station-level agreement
 
@@ -264,8 +268,10 @@ nearest cell, whereas stations measure at a point or over the visible sky.
 
 ## Data and code availability
 
-Code, processed data and figures: https://github.com/kutay-mihliardic/paper01-era5-claas3-cloud-cover,
-release v1.0.0 (`make all` reproduces all figures and tables).
+Code, input and processed data, and figures are available at
+https://github.com/kutay-mihliardic/paper01-era5-claas3-cloud-cover/releases/tag/v1.0.0
+(`make all` reproduces all figures and tables). ERA5, CLAAS-3 and DWD data are
+distributed under CC BY 4.0 by their providers.
 
 ## Acknowledgements
 
@@ -276,18 +282,17 @@ Natural Earth.
 
 ## Figures
 
-- **Figure 1.** Mean cloud fraction 2015–2024: (a) CLAAS-3, (b) ERA5, (c) DWD stations
-  (circles: instrument, squares: observer). Dashed box: study region. CLAAS-3: © EUMETSAT,
-  doi:10.5676/EUM_SAF_CM/CLAAS/V003. (`figures/fig_a_mean_maps.png`)
-- **Figure 2.** Seasonal cycle at the stations: (a, b) cloud fraction, (c, d) difference to
-  the station, for instrument (a, c; band: 25–75 % of stations) and observer (b, d)
-  stations. (`figures/fig_b_seasonal_cycle.png`)
-- **Figure 3.** Seasonal mean of ERA5 (top) and CLAAS-3 (bottom) at each station against
-  the station value; dashed: 1:1. (`figures/fig_c_station_scatter.png`)
-- **Figure S1.** Deseasonalised differences at the instrument stations with the CDR–ICDR
-  transition (solid line) and the period means. (`figures/figS1_break_test_2021.png`)
-- **Figure S2.** Observer-to-instrument switch: (a) composite aligned on the switch month,
-  (b) change per station. (`figures/figS2_method_switch.png`)
+![**Figure 1.** Mean cloud fraction 2015–2024: (a) CLAAS-3, (b) ERA5, (c) DWD stations (circles: instrument, squares: observer). Dashed box: study region. CLAAS-3: © EUMETSAT, doi:10.5676/EUM_SAF_CM/CLAAS/V003.](../figures/fig_a_mean_maps.png)
+
+![**Figure 2.** Seasonal cycle at the stations, 2015–2024: (a, b) cloud fraction; (c, d) difference to the station, for the 36 instrument stations (a, c; band: 25–75 % of stations) and the 3 observer stations (b, d). ERA5 and CLAAS-3 are sampled at the stations in matched months.](../figures/fig_b_seasonal_cycle.png)
+
+![**Figure 3.** Seasonal mean of ERA5 (top) and CLAAS-3 (bottom) at each station against the station value. Circles: instrument stations; open squares: observer stations; dashed: 1:1. Statistics refer to instrument stations.](../figures/fig_c_station_scatter.png)
+
+## Supplementary figures
+
+![**Figure S1.** Deseasonalised differences averaged over the instrument stations: CLAAS-3 − station, ERA5 − station and CLAAS-3 − ERA5, with the CDR–ICDR transition (solid vertical line), platform-attribute changes (dotted) and the means of both periods (dashed).](../figures/figS1_break_test_2021.png)
+
+![**Figure S2.** Observer-to-instrument switch at 11 DWD stations: (a) composite of station − reference aligned on the switch month, minus the stable-station control; (b) difference-in-differences change per station.](../figures/figS2_method_switch.png)
 
 ## References
 
@@ -295,12 +300,12 @@ Natural Earth.
   SAF/CM/KNMI/PUM/SEV/CLD, Issue 3.1, 8 August 2022.
 - CM SAF (2022b): Validation Report, SEVIRI cloud products, CLAAS Edition 3,
   SAF/CM/KNMI/VAL/SEV/CLD, Issue 3.1, 8 August 2022.
-- ECMWF (2026): ERA5: data documentation. Copernicus Knowledge Base,
-  https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation (accessed 19
-  November 2026).
 - Copernicus Climate Change Service (2023): ERA5 monthly averaged data on single levels
   from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS),
   doi:10.24381/cds.f17050d7 (accessed on 8 November 2026).
+- ECMWF (2026): ERA5: data documentation. Copernicus Knowledge Base,
+  https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation (accessed 19
+  November 2026).
 - Hersbach, H., Bell, B., Berrisford, P., et al. (2020): The ERA5 global reanalysis.
   Q. J. R. Meteorol. Soc., 146(730), 1999–2049, doi:10.1002/qj.3803.
 - Meirink, J. F., Karlsson, K.-G., Solodovnik, I., Hüser, I., Benas, N., Johansson, E.,

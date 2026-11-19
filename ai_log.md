@@ -383,3 +383,18 @@ so each source is cited only for what its abstract says. Draft → v0.3, no open
   is not documented as one. Softened before committing.
 - The original introduction sentence claimed more (surface budget, model evaluation)
   than either reference states; the claim was narrowed to match the sources.
+
+## 2026-11-19 — Phase 7: manuscript v1.0
+
+**Asked:** Bring the paper to its final form, then discuss which peer-reviewed journal.
+
+**Done:** Final read of the draft; `paper/draft.md` → `paper/manuscript.md` (v1.0): author
+block placeholders, figures embedded with captions, data-availability link to release
+v1.0.0, references sorted, CDS citation made consistent. PDF build: `make paper`
+(`paper/build_pdf.sh`: pandoc → HTML → headless Chromium, A4, 9 pages); checked visually.
+
+**Where I went wrong / was uncertain:**
+- The abstract said the observer stations agree "within about 0.03"; monthly values reach
+  −0.039, seasonal values stay within 0.027. Changed to "within 0.03 in every season".
+- A 2.1 citation read "(CDS variable description)" instead of the reference-list form.
+- Author name, affiliation and ORCID are unknown to me; left as placeholders.
