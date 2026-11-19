@@ -186,6 +186,8 @@ ranges only from 0.63 to 0.70. The selected stations report 0.63–0.77 (Fig. 1c
 the regional means include sea areas, the comparison with stations is made at the
 station locations (Sections 4.2–4.3).
 
+![**Figure 1.** Mean cloud fraction 2015–2024: (a) CLAAS-3, (b) ERA5, (c) DWD stations (circles: ceilometer stations, labelled "instrument"; squares: observer stations). Dashed box: study region. CLAAS-3: © EUMETSAT, doi:10.5676/EUM_SAF_CM/CLAAS/V003.](../figures/fig_a_mean_maps.png)
+
 ### 4.2 Seasonal cycle at the stations
 
 At the 36 ceilometer stations, all three sources show the same seasonal cycle, with the
@@ -199,6 +201,8 @@ Both datasets are lower than the ceilometer stations in all twelve months (Fig. 
 ERA5 by 0.027–0.036 depending on the season and CLAAS-3 by 0.029–0.049, with the largest
 CLAAS-3 difference in summer. At the three observer stations the monthly differences are much
 smaller, between −0.039 and +0.027, and both are positive in October–December (Fig. 2b, d).
+
+![**Figure 2.** Seasonal cycle at the stations, 2015–2024: (a, b) cloud fraction; (c, d) difference to the station, for the 36 ceilometer stations (a, c; band: 25–75 % of stations) and the 3 observer stations (b, d). ERA5 and CLAAS-3 are sampled at the stations in matched months.](../figures/fig_b_seasonal_cycle.png)
 
 **Table 1.** Seasonal mean cloud fraction at the 36 ceilometer stations, 2015–2024, and
 the ERA5 − CLAAS-3 difference in the two parts of the satellite record.
@@ -221,6 +225,8 @@ is 0.50–0.64 for ERA5 and 0.14–0.33 for CLAAS-3. The RMSE is 0.039–0.047 f
 station value most at three Baltic coast or island stations (Schönhagen, Greifswalder Oie
 and Boltenhagen) and falls furthest below it at inland stations (Quickborn, Schwerin and
 Marnitz).
+
+![**Figure 3.** Seasonal mean of ERA5 (top) and CLAAS-3 (bottom) at each station against the station value. Circles: ceilometer stations ("instrument"); open squares: observer stations; dashed: 1:1. Statistics refer to the ceilometer stations.](../figures/fig_c_station_scatter.png)
 
 ### 4.4 Sensitivity to the satellite record period
 
@@ -331,15 +337,7 @@ Facility on Climate Monitoring (CM SAF); CLAAS-3 data © EUMETSAT. ERA5 data: Co
 ECMWF. Station data: Deutscher Wetterdienst (DWD), Climate Data Center. Coastlines:
 Natural Earth.
 
-## Figures
-
-![**Figure 1.** Mean cloud fraction 2015–2024: (a) CLAAS-3, (b) ERA5, (c) DWD stations (circles: ceilometer stations, labelled "instrument"; squares: observer stations). Dashed box: study region. CLAAS-3: © EUMETSAT, doi:10.5676/EUM_SAF_CM/CLAAS/V003.](../figures/fig_a_mean_maps.png)
-
-![**Figure 2.** Seasonal cycle at the stations, 2015–2024: (a, b) cloud fraction; (c, d) difference to the station, for the 36 ceilometer stations (a, c; band: 25–75 % of stations) and the 3 observer stations (b, d). ERA5 and CLAAS-3 are sampled at the stations in matched months.](../figures/fig_b_seasonal_cycle.png)
-
-![**Figure 3.** Seasonal mean of ERA5 (top) and CLAAS-3 (bottom) at each station against the station value. Circles: ceilometer stations ("instrument"); open squares: observer stations; dashed: 1:1. Statistics refer to the ceilometer stations.](../figures/fig_c_station_scatter.png)
-
-## Supplementary figures
+## Supporting Information
 
 ![**Figure S1.** Deseasonalised differences averaged over the ceilometer stations: CLAAS-3 − station, ERA5 − station and CLAAS-3 − ERA5, with the CDR–ICDR transition (solid vertical line), platform-attribute changes (dotted) and the means of both periods (dashed).](../figures/figS1_break_test_2021.png)
 

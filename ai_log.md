@@ -439,3 +439,6 @@ numbers or claims changed. PDF rebuilt.
   regenerated; analysis frozen). The same check showed 21 of 36 stations changed
   ceilometer model within the period — an inhomogeneity I had not noticed before; added
   as a limitation and to next_questions.md, not analysed.
+- User asked why figures were at the end. Moved Figures 1–3 into the Results sections
+  where they are first discussed; S1/S2 under "Supporting Information" (AGU's term) on a
+  new page; CSS keeps headings with their text. No text or numbers changed.
