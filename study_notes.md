@@ -96,8 +96,8 @@ project. Check before citing.
 **IFS, ERA5, AIFS — who is who**
 - **IFS** (Integrated Forecasting System): ECMWF's physics-based weather model. It
   solves the equations of motion, thermodynamics and moisture on a grid.
-- **ERA5** is not a separate model and does not "learn" from IFS: it *is* IFS (a 2016
-  version, about 31 km, 137 levels) run over past decades with **data assimilation**
+- **ERA5** is not a separate model and does not "learn" from IFS: it *is* IFS (cycle
+  CY41R2, about 31 km, 137 levels — verified in ECMWF's ERA5 documentation, S5) run over past decades with **data assimilation**
   — every 12 h the model's short forecast is combined with the observations available
   then. Clouds in ERA5 therefore come from the IFS cloud scheme, steered indirectly by
   the assimilated observations (temperature, humidity, wind, …).

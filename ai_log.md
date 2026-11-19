@@ -349,3 +349,21 @@ sources read in this project. Unsourced or unchecked statements are marked [REF]
   against the CSV before sending; fixed.
 - The introduction needs one reference for the importance of clouds that I could not
   verify here ([REF]).
+
+## 2026-11-19 — Phase 7: closing the [CHECK] markers
+
+**Asked:** Close the [CHECK] markers in the draft by finding sources.
+
+**Done:** Read `methods_notes.md` at session start. CDS catalogue (S2) gave IFS Cycle 41r2
+and ~31 km; the CLAAS-3 PUM (S3) gave the version rule (cite via DOI → edition 3), the
+daily/monthly averaging and CM SAF's recommended acknowledgement. Added
+confluence.ecmwf.int to the environment (user-approved card) and read ECMWF's ERA5 data
+documentation (S5): CY41R2, 137 levels, 31 km, and how monthly means of analysis
+parameters are formed; our tcc file is an analysis field (GRIB_dataType = an). Draft →
+v0.2: both limitations items removed, sources added; only the [REF] for the introduction
+remains.
+
+**Where I went wrong / was uncertain:**
+- CLAUDE.md and my early notes called the CLAAS-3 archives "v004" from the file names;
+  the documented version is edition 3 (DOI V003), product version 3.0. The meaning of
+  "004" in the file names is still unknown, but it is not needed for the paper.

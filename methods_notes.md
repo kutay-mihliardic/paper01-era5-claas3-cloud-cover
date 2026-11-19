@@ -71,7 +71,9 @@ phase 5 · Limitations ← open items in §4 and §6.
   Meteosat-9 (2019-01 only) → Meteosat-11 (2019-02) → empty (2022-01) → Meteosat-11
   (2022-02) → Meteosat-10 (2023-03..2024-12). **[verified]**
 - Files report `product_version = 3.0`; "004" appears only in file names (CLAUDE.md says
-  "v004"). **[open]** — which is the correct version label for citation?
+  "v004"). Resolved: the PUM (S3, §8) recommends identifying the version via the DOI
+  (V003 = edition 3); cite edition 3 / product version 3.0; "004" is not documented in
+  S3 and not needed for citation. **[verified]**
 
 ### ERA5
 - 120 monthly steps 2015-01..2024-12, `tcc` range 0.271–0.924, no NaN. **[verified]**
@@ -107,7 +109,10 @@ phase 5 · Limitations ← open items in §4 and §6.
   a grid box covered by cloud. Total cloud cover is a single level field calculated from
   the cloud occurring at different model levels through the atmosphere. Assumptions are
   made about the degree of overlap/randomness between clouds at different heights. Cloud
-  fractions vary from 0 to 1." **[verified, source S2]** User's wording matches: "Katmanlar
+  fractions vary from 0 to 1." **[verified, source S2]** ERA5 is produced with 4D-Var and
+  IFS CY41R2, 137 model levels, ~31 km; monthly means of analysis parameters are averages
+  of all hourly analyses with validity time in the month, 00–23 UTC; our `tcc` file has
+  GRIB_dataType = an (analysis). **[verified, S5 + file attribute]** User's wording matches: "Katmanlar
   bir örtüşme varsayımıyla üst üste konup tek sayıya indiriliyor: yukarıdan bakınca
   kutunun ne kadarı bulutla kapalı?" — Claim "cloud fraction observations are not
   assimilated directly" **[to verify]** (not found in S2).
@@ -397,6 +402,18 @@ phase-5 interpretation; Claude has not linked them to our results.
     ceilometers only observe a very small fraction of the sky."
   - "a known tendency of CLAAS-3 to overestimate cloud cover at large viewing angles"
     (cloud-mask validation vs CALIOP).
+- S3 also: "The daily means are based on all available time slots. The monthly mean is
+  an average of all daily means." (§7.2); recommended acknowledgement: "The work performed
+  was done (i.a.) by using data from EUMETSAT's Satellite Application Facility on Climate
+  Monitoring (CM SAF)" (§8).
+- **S5** ECMWF: ERA5: data documentation (Copernicus Knowledge Base),
+  https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation, read 2026-11-19.
+  "ERA5 is produced using 4D-Var data assimilation and model forecasts in CY41R2 of the
+  ECMWF Integrated Forecast System (IFS), with 137 hybrid sigma/pressure (model) levels";
+  "one (hourly, 31 km) high resolution realisation"; monthly means (of daily means,
+  "monthly averaged" in the CDS) "are created from all the hourly [...] data in the
+  month"; for analysis parameters "from data with a validity time in the month, between
+  00 and 23 UTC".
 - Not downloaded/committed: the PDFs themselves (EUMETSAT documents); URLs above.
 
 ### Method-switch test (D5) `figures/figS2_method_switch.png`, `data/processed/method_switch_test.csv`

@@ -1,8 +1,8 @@
 # Model error or satellite artefact? A three-way comparison of cloud cover over Northern Germany
 
-*Draft v0.1 (2026-11-17). Markers: **[REF]** = citation still to be found; **[CHECK]** =
-statement from general knowledge, verify before submission. All numbers are from
-`methods_notes.md` and `data/processed/` (release v1.0.0).*
+*Draft v0.2 (2026-11-19). Marker: **[REF]** = citation still to be found. All [CHECK]
+items of v0.1 are resolved with sources. All numbers are from `methods_notes.md` and
+`data/processed/` (release v1.0.0).*
 
 ## Abstract
 
@@ -56,10 +56,12 @@ We use ERA5 monthly averaged reanalysis of total cloud cover (`tcc`) on single l
 grid box covered by cloud", calculated "from the cloud occurring at different model
 levels through the atmosphere", with "assumptions [...] about the degree of
 overlap/randomness between clouds at different heights" (CDS variable description). It is
-therefore a model quantity: ERA5 is the ECMWF Integrated Forecasting System (IFS),
-kept at one fixed model version for the whole record and combined with observations by
-data assimilation (Hersbach et al., 2020) [CHECK: version, ~31 km, 137 levels]. All
-months used are final ERA5 (no preliminary ERA5T data).
+therefore a model quantity: ERA5 is produced with 4D-Var data assimilation and forecasts
+of one fixed version (cycle CY41R2) of the ECMWF Integrated Forecasting System (IFS), at
+about 31 km horizontal resolution with 137 model levels (Hersbach et al., 2020; ECMWF,
+2026). For analysed parameters such as `tcc`, the monthly means are averages of all
+hourly analyses with a validity time in the month, 00–23 UTC (ECMWF, 2026). All months
+used are final ERA5 (no preliminary ERA5T data).
 
 ### 2.2 CLAAS-3
 
@@ -68,7 +70,9 @@ Second Generation, which scans every 15 minutes with pixels of 3 × 3 km² at th
 sub-satellite point (CM SAF, 2022a). A pixel is counted as cloudy if its cloud
 probability exceeds 50 %; the Level-3 CFC is "the fraction of cloudy pixels per grid box
 compared to the total number of analyzed pixels in the grid box" (CM SAF, 2022a). We use
-monthly means (means of daily means) on a 0.05° grid, in percent, from the climate data
+edition 3 (product version 3.0 in the file metadata) monthly means on a 0.05° grid, in
+percent; daily means are based on all available 15-minute slots and the monthly mean is
+the average of all daily means (CM SAF, 2022a). Data come from the climate data
 record (CDR, 2015–2020) and the interim climate data record (ICDR, 2021–2024), which is
 produced with the same algorithms (CM SAF, 2022b). All 120 months are present, with no
 fill values and all records flagged as valid. The satellite platform attribute changes
@@ -243,10 +247,7 @@ on this: summer has the largest ERA5 − CLAAS-3 difference in both periods.
 **Limitations.** (i) The observer group has only three stations, two of them in Berlin.
 (ii) The method-switch test cannot separate a step from a gradual trend, and the
 contributing stations change along the time axis. (iii) Grid values are taken from the
-nearest cell, whereas stations measure at a point or over the visible sky. (iv) The
-CLAAS-3 version label differs between the file metadata (3.0) and the file names ("004")
-[CHECK with CM SAF before citing a version]. (v) How ERA5 forms monthly means of
-instantaneous fields was not verified [CHECK].
+nearest cell, whereas stations measure at a point or over the visible sky.
 
 ## 6. Conclusions
 
@@ -267,7 +268,8 @@ release v1.0.0 (`make all` reproduces all figures and tables).
 
 ## Acknowledgements
 
-CLAAS-3 data © EUMETSAT, CM SAF. ERA5 data: Copernicus Climate Change Service (C3S),
+The work performed was done (i.a.) by using data from EUMETSAT's Satellite Application
+Facility on Climate Monitoring (CM SAF); CLAAS-3 data © EUMETSAT. ERA5 data: Copernicus Climate Change Service (C3S),
 ECMWF. Station data: Deutscher Wetterdienst (DWD), Climate Data Center. Coastlines:
 Natural Earth.
 
@@ -292,6 +294,9 @@ Natural Earth.
   SAF/CM/KNMI/PUM/SEV/CLD, Issue 3.1, 8 August 2022.
 - CM SAF (2022b): Validation Report, SEVIRI cloud products, CLAAS Edition 3,
   SAF/CM/KNMI/VAL/SEV/CLD, Issue 3.1, 8 August 2022.
+- ECMWF (2026): ERA5: data documentation. Copernicus Knowledge Base,
+  https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation (accessed 19
+  November 2026).
 - Copernicus Climate Change Service (2023): ERA5 monthly averaged data on single levels
   from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS),
   doi:10.24381/cds.f17050d7 (accessed on 8 November 2026).
