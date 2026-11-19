@@ -10,69 +10,69 @@ Correspondence: [e-mail]
 
 ## Key Points
 
-- ERA5 and CLAAS-3 cloud cover over Northern Germany differ most in summer, in both parts of the satellite record
-- Ceilometer stations report more cloud than both datasets, and stations read higher after switching from observers to ceilometers
-- Which dataset is closer to the truth depends on how the ground reference measures cloud cover
+- ERA5 and CLAAS-3 total cloud cover over Northern Germany differ most in summer, in both the CDR and the ICDR period
+- Ceilometer stations report more cloud than both datasets in all seasons, unlike stations with human observers
+- Stations report more cloud after switching from visual observation to ceilometers, which affects attribution of the bias
 
 ## Abstract
 
-Monthly total cloud cover from the ERA5 reanalysis and from the CM SAF CLAAS-3 satellite
-record are compared over Northern Germany (52–55.5°N, 6–14.5°E) for 2015–2024, using
-German Weather Service (DWD) stations as a ground reference. All three sources are
-converted to a cloud fraction between 0 and 1, and ERA5 and CLAAS-3 are sampled at 39
-stations in the months for which each station reports. ERA5 and CLAAS-3 agree within
-0.01 in winter, spring and autumn, but differ by 0.022 in summer (June–August), when
-CLAAS-3 is lower; summer remains the season of largest difference in both the
-2015–2020 and the 2021–2024 parts of the satellite record. Compared with the 36 stations
-that measure cloud cover with ceilometers, both datasets are lower in every season, by
-0.03–0.05. The three stations with human observers agree with both datasets to within
-0.03 in every season. At 11 stations that switched from observer to ceilometer during the period,
-the station value rises by 0.024 (about 0.2 octa) relative to ERA5 after the switch. The
-summer difference between model and satellite holds in all our tests, whereas the
-question of which of the two is closer to the truth depends on how the ground reference
-measures cloud cover.
+We compare monthly total cloud cover from the ERA5 reanalysis and the CM SAF CLAAS-3
+satellite record over Northern Germany (52–55.5°N, 6–14.5°E) for 2015–2024, using stations
+of the German Weather Service (DWD) as ground reference. All data are converted to cloud
+fraction, and ERA5 and CLAAS-3 are sampled at 39 stations in the months with station
+data. ERA5 and CLAAS-3 agree to within 0.01 in winter, spring and autumn, whereas in
+summer (June–August) CLAAS-3 is lower than ERA5 by 0.022. Summer remains the season with
+the largest difference in both the climate data record (2015–2020) and the interim
+record (2021–2024). Relative to the 36 stations that measure cloud cover with
+ceilometers, both datasets are lower in all seasons, by 0.03–0.05, while the three
+stations with human observers agree with both datasets to within 0.03. At 11 stations
+that switched from visual observation to ceilometers during the period, the station
+values increased by 0.024 (about 0.2 octa) relative to ERA5 after the switch. The
+seasonal pattern of the ERA5–CLAAS-3 difference is therefore insensitive to the choice
+of ground reference, while its attribution to the model or to the satellite record
+depends on how cloud cover is observed at the surface.
 
 ## Plain Language Summary
 
-How cloudy is Northern Germany, and who should we believe? We compared three sources of
-cloud cover for 2015–2024: a weather model that reconstructs past weather (ERA5), a
-weather satellite that looks down from 36,000 km (CLAAS-3), and ground stations of the
-German Weather Service. The model and the satellite agree well for most of the year but
-disagree most in summer, when the satellite sees less cloud. Ground stations should tell
-us which one is right, but the stations themselves measure in two ways: some use a
-person who looks at the whole sky, others use a laser instrument that looks straight
-up. Stations with the laser instrument report more cloud than both the model and the
-satellite, and when a station replaced its human observer with the instrument, it
-started to report more cloud. So the answer to "who is right" depends on how the ground
-measurement is made, while the summer difference between model and satellite holds
-either way.
+Cloud cover over Northern Germany can be estimated from a weather model run over past
+decades (ERA5), from a geostationary weather satellite (CLAAS-3), or from ground stations
+of the German Weather Service. We compared the three for 2015–2024. The model and the
+satellite agree for most of the year, but in summer the satellite shows less cloud than
+the model. Ground stations are normally used to decide which estimate is closer to
+reality. However, the stations observe clouds in two ways: some rely on a human observer
+who looks at the whole sky, others on a ceilometer, a laser instrument that detects
+clouds directly overhead. Stations with ceilometers report more cloud than both the model
+and the satellite, and stations that replaced the observer with a ceilometer started to
+report more cloud. Which estimate is closer to reality thus depends on the type of
+ground observation, while the summer difference between model and satellite is found
+with both.
 
 ## 1. Introduction
 
 Clouds strongly modulate the Earth's radiation budget (Ramanathan et al., 1989), and
-cloud–climate feedbacks remain one of the least understood parts of the climate system
-(Stephens, 2005), which makes total cloud cover one of the most basic quantities
-against which weather and climate models are evaluated. Two widely used long-term records of cloud
-cover are the ERA5 reanalysis (Hersbach et al., 2020) and the CM SAF Cloud property
-dAtAset using SEVIRI, edition 3 (CLAAS-3; Meirink et al., 2022), derived from the
-geostationary Meteosat satellites. They are produced in very different ways.
-ERA5 comes from a numerical weather prediction model constrained by observations,
-CLAAS-3 from classifying satellite pixels as cloudy or clear, and the two do not always
-agree.
+cloud–climate feedbacks remain one of the least understood aspects of the climate system
+(Stephens, 2005). Total cloud cover is accordingly one of the basic variables used to
+evaluate weather and climate models. Two widely used long-term records are the ERA5
+reanalysis (Hersbach et al., 2020) and the CM SAF Cloud property dAtAset using SEVIRI,
+edition 3 (CLAAS-3; Meirink et al., 2022), which is derived from the geostationary
+Meteosat satellites. In ERA5, cloud cover is a product of the forecast model,
+constrained by assimilated observations; in CLAAS-3 it is obtained by classifying
+satellite pixels as cloudy or clear. Differences between the two records are thus to be
+expected.
 
-When two such records disagree, ground stations are the usual referee. However, ground
-observations of cloud cover are themselves made in two different ways: by human
-observers who estimate the covered fraction of the whole sky, and by ceilometers that
-detect clouds directly above the station (CM SAF, 2022b). Over Northern Germany the
-geostationary satellite also views the surface at a slant, with a viewing zenith angle
-of 60–65° over our study region. At such angles CM SAF reports that CLAAS-3 tends to
-overestimate cloud cover (CM SAF, 2022a).
+Surface observations are commonly used as a reference in such comparisons. Total cloud
+cover at the surface is, however, observed in two different ways: by human observers,
+who estimate the fraction of the sky covered by cloud, and by ceilometers, which detect
+clouds directly above the station (CM SAF, 2022b). A further complication over Northern
+Germany is the viewing geometry of the geostationary satellite. The viewing zenith angle
+over our study region is 60–65°, and CM SAF reports that CLAAS-3 tends to overestimate
+cloud cover at such angles (CM SAF, 2022a).
 
-This note asks two questions: (1) in which season does ERA5 total cloud cover deviate
-most from CLAAS-3 over Northern Germany, and (2) using DWD stations as a referee, how
-much of that deviation comes from ERA5 and how much from the satellite? We also test the
-referee itself, using stations that changed their measurement method during the study
-period.
+In this study we address two questions: (1) in which season does ERA5 total cloud cover
+deviate most from CLAAS-3 over Northern Germany, and (2) how much of that deviation can
+be attributed to ERA5 and how much to the satellite record when DWD stations are used as
+reference? In addition, we examine the reference itself, using stations that changed
+their observing method during the study period.
 
 ## 2. Data
 
@@ -83,7 +83,7 @@ We use ERA5 monthly averaged reanalysis of total cloud cover (`tcc`) on single l
 grid box covered by cloud", calculated "from the cloud occurring at different model
 levels through the atmosphere", with "assumptions [...] about the degree of
 overlap/randomness between clouds at different heights" (Copernicus Climate Change
-Service, 2023). It is a model quantity: ERA5 is produced with 4D-Var data assimilation and forecasts
+Service, 2023). ERA5 is produced with 4D-Var data assimilation and forecasts
 of one fixed version (cycle CY41R2) of the ECMWF Integrated Forecasting System (IFS), at
 about 31 km horizontal resolution with 137 model levels (Hersbach et al., 2020; ECMWF,
 2026). For analysed parameters such as `tcc`, the monthly means are averages of all
@@ -115,8 +115,8 @@ cover of the same stations shows that `MO_N` is a 24-hour mean (median absolute
 difference 0.007 octa, against 0.12–0.16 octa for a mean of the 06, 12 and 18 UTC
 observations only).
 
-The hourly data also record, for every hour, whether cloud cover was estimated by a
-person or measured by an instrument. In 2015–2024, 48 stations used instruments
+The hourly records also indicate whether cloud cover was observed visually or measured
+by an instrument. In 2015–2024, 48 stations used instruments
 throughout, 12 used observers throughout, and 15 switched from observer to instrument
 between 2016 and 2023.
 
@@ -129,14 +129,14 @@ already a fraction between 0 and 1.
 
 ### 3.2 Station selection
 
-A referee must be homogeneous in time: a change of measurement
-method introduces a jump that has nothing to do with the climate. For this reason we exclude
-the 15 stations that switched method. Because the question is seasonal, we further
-require at least 21 of the 30 months of every season (DJF, MAM, JJA, SON); a criterion
-on the total number of months alone would admit stations with only 16 of 30 winter or
-autumn months. Of two co-located Potsdam series, the regular station is used. This leaves
-39 stations: 36 with instruments and 3 with observers, reported separately because the
-two methods measure cloud cover in different ways.
+A reference series should be homogeneous in time, because a change of observing method
+can introduce a non-climatic jump. We therefore exclude the 15 stations that switched
+method. Since the research question concerns the seasonal cycle, we further require at
+least 21 of the 30 months of every season (DJF, MAM, JJA, SON); a criterion based on the
+total number of months alone would admit stations with only 16 of 30 winter or autumn
+months. Of two co-located Potsdam series, the regular station is used. The remaining 39
+stations comprise 36 ceilometer stations and 3 observer stations, which are analysed
+separately because the two observing methods sample cloud cover differently.
 
 ### 3.3 Matched sampling
 
@@ -170,8 +170,8 @@ hours are discarded, and stations need at least 12 months before and after the s
 We compute the change of the deseasonalised station − ERA5 difference after the switch
 and subtract the change over the same months at the 36 stable instrument stations
 (difference-in-differences). The same is done with CLAAS-3 as reference. We report the
-mean over stations with a bootstrap 95 % confidence interval and a sign test. These rules
-were fixed before the test was run.
+mean over stations with a bootstrap 95 % confidence interval and a sign test. The
+selection rules and test statistics were defined before the analysis was carried out.
 
 ## 4. Results
 
@@ -229,7 +229,7 @@ by 0.016 (p = 0.02), while ERA5 − station does not change (−0.001, p = 0.96)
 The decrease in the CLAAS-3 differences is gradual, beginning around 2020, rather than a
 single step at the transition.
 
-### 4.5 The measurement method of the referee
+### 4.5 Effect of the observing method
 
 Eleven of the 15 switching stations meet the selection rules. After the switch from
 observer to instrument, the station value increases relative to ERA5 by 0.024 on average
@@ -241,73 +241,72 @@ and the set of contributing stations changes along the time axis.
 
 ## 5. Discussion
 
-### 5.1 The summer difference does not depend on the referee
+### 5.1 Seasonal difference between ERA5 and CLAAS-3
 
-The difference between ERA5
-and CLAAS-3 is computed without the station data, so it is not affected by how the
-stations measure cloud cover. It is largest in summer in both parts of the satellite
-record, and in summer CLAAS-3 is further from both kinds of station than ERA5 is
-(instrument stations: −0.049 versus −0.027; observer stations: −0.027 versus −0.003).
-The direction of the summer difference is thus clear; its size is less certain,
-because it grows from +0.012 to +0.035 between the two periods and the observer group
-contains only three stations. This study does not identify the physical cause of the
-summer difference; doing so would require separating cloud types and the time of day.
+The ERA5 − CLAAS-3 difference does not involve the station data and is independent of
+the observing method at the stations. It is largest in summer in both parts of the
+satellite record, and in summer CLAAS-3 deviates more than ERA5 from both station types
+(ceilometer stations: −0.049 versus −0.027; observer stations: −0.027 versus −0.003).
+The sign of the summer difference is thus consistent across all subsets considered here,
+whereas its magnitude is less certain: it increases from +0.012 to +0.035 between the two
+periods, and the observer group contains only three stations. The physical cause of the
+summer difference is not addressed in this study; this would require a separation by
+cloud type and time of day.
 
-### 5.2 The referee depends on how it measures
+### 5.2 Dependence on the observing method at the stations
 
-Three results point the same way: the
-instrument stations are higher than both datasets in every season, the observer stations
-are not, and stations become higher relative to ERA5 when they switch from observer to
-instrument. Together they indicate that a substantial part of the offset to the
-instrument stations is a property of the measurement method rather than an error of
-ERA5 or CLAAS-3. The size of the switch effect (0.024) is comparable to the offset
-between ERA5 and the instrument stations (0.027–0.036). The CM SAF validation report
-lists known errors of human observations that act in opposite directions: observers
-tend to report too little cloud at night, and too much convective cloud when it is seen
-at a slant angle in summer. It also notes that ceilometers sample only a very small part
-of the sky (CM SAF, 2022b). Our data cannot tell whether observers report too little or
-instruments too much. How much of the deviation belongs to ERA5 and how much to the
-satellite, our second research question, depends on which referee is trusted and should
-not be given as a single number.
+Three results are consistent with each other: ceilometer stations report more cloud
+than both datasets in all seasons, observer stations do not, and stations report more
+cloud relative to ERA5 after switching from visual observation to ceilometers. This
+suggests that a substantial part of the offset relative to the ceilometer stations is
+related to the observing method rather than to errors in ERA5 or CLAAS-3; the switch
+effect (0.024) is of similar magnitude to the ERA5 − station offset at the ceilometer
+stations (0.027–0.036). Known error sources of visual observations act in opposite
+directions: observers tend to underestimate cloud cover at night and to overestimate
+convective cloud viewed at slant angles in summer, while ceilometers sample only a very
+small part of the sky (CM SAF, 2022b). Our data do not allow us to determine whether
+observers underestimate or ceilometers overestimate cloud cover. Consequently, the
+attribution of the model–satellite difference to ERA5 or CLAAS-3, our second question,
+depends on the choice of reference and cannot be expressed as a single number.
 
 ### 5.3 Viewing angle
 
-CM SAF documents that CLAAS-3 overestimates cloud cover at high
-viewing angles (CM SAF, 2022a, 2022b), and the viewing zenith angle over Northern Germany
-is 60–65°. At the land stations, however, CLAAS-3 is not higher than ERA5: the two agree
-outside summer and CLAAS-3 is lower in summer. A general overestimation is thus not
-visible at land stations relative to ERA5 in our data, although it could be present and
-offset by other effects. The higher CLAAS-3 values over the sea and at Baltic coast and
-island stations are a separate pattern that this study did not analyse.
+CM SAF documents an overestimation of cloud cover by CLAAS-3 at high viewing angles
+(CM SAF, 2022a, 2022b), and the viewing zenith angle over Northern Germany is 60–65°.
+At the land stations, however, CLAAS-3 is not higher than ERA5: the two agree outside
+summer, and CLAAS-3 is lower in summer. A general overestimation relative to ERA5 is
+thus not evident at land stations, although it may be present and compensated by other
+effects. The higher CLAAS-3 values over the sea and at stations on the Baltic coast are
+a separate feature that was not analysed here.
 
 ### 5.4 Stability of the satellite record
 
-The gradual decrease of the CLAAS-3 differences
-from about 2020, together with the unchanged ERA5 − station difference, is consistent
-with a slow change on the satellite side rather than a step caused by the CDR–ICDR
-transition itself; CM SAF reports a very high consistency between the two records in
-their overlap year (CM SAF, 2022b) and "slight anomalies [...] after 2018, which
-originate from nighttime observations" (CM SAF, 2022a). The main result does not depend
-on this: summer has the largest ERA5 − CLAAS-3 difference in both periods.
+The gradual decrease of the CLAAS-3 differences from about 2020, with no corresponding
+change in ERA5 − station, is consistent with a slow drift on the satellite side rather
+than a step change at the CDR–ICDR transition. CM SAF reports a very high consistency
+between the two records in their overlap year (CM SAF, 2022b) and "slight anomalies
+[...] after 2018, which originate from nighttime observations" (CM SAF, 2022a). The main
+result is not affected: summer has the largest ERA5 − CLAAS-3 difference in both periods.
 
 ### 5.5 Limitations
 
-(i) The observer group has only three stations, two of them in Berlin.
-(ii) The method-switch test cannot separate a step from a gradual trend, and the
-contributing stations change along the time axis. (iii) Grid values are taken from the
-nearest cell, whereas stations measure at a point or over the visible sky.
+The observer group comprises only three stations, two of them in Berlin. The
+method-switch test cannot distinguish a step change from a gradual trend, and the set of
+contributing stations changes along the time axis. Finally, gridded values are taken
+from the nearest grid cell, whereas the stations observe either a single point or the
+visible sky.
 
 ## 6. Conclusions
 
 1. Over Northern Germany, ERA5 and CLAAS-3 total cloud cover differ most in summer
-   (ERA5 higher by 0.022 at the stations), and this holds in both parts of the CLAAS-3
-   record.
-2. Against ceilometer stations both datasets are lower in every season by 0.03–0.05,
-   but a comparable offset appears when a station switches from observer to ceilometer,
-   so this offset is at least partly a property of the reference.
-3. Attributing the model–satellite difference to one of the two requires knowing how the
-   ground reference measures cloud cover; an independent reference (e.g. active remote
-   sensing at a few sites) would be needed to settle it.
+   (ERA5 higher by 0.022 at the stations), in both parts of the CLAAS-3 record.
+2. Both datasets report less cloud than ceilometer stations in all seasons, by 0.03–0.05.
+   A change of similar magnitude occurs when stations switch from visual observation to
+   ceilometers, indicating that this offset is at least partly related to the observing
+   method.
+3. Attributing the model–satellite difference to either dataset requires a reference
+   with known observing characteristics; an independent reference, such as active remote
+   sensing at selected sites, would be needed.
 
 ## Open Research
 

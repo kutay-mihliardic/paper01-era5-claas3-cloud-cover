@@ -424,3 +424,10 @@ paragraph headings in Methods and Discussion into numbered subsections (3.1–3.
 5.1–5.5); section 4.4 renamed "Sensitivity to the satellite record period". En dashes in
 ranges (2015–2024) and minus signs in differences were kept (correct typography). No
 numbers or claims changed. PDF rebuilt.
+- Second style pass (user: make the language read like the scientific literature):
+  replaced the "referee" metaphor with "reference"/"ground reference", removed the
+  rhetorical question and informal phrases, added usual hedging ("suggests", "is
+  consistent with"), descriptive subsection titles (4.5, 5.1, 5.2), rewrote Key Points,
+  Abstract, Plain Language Summary, Introduction, 3.2, Discussion and Conclusions.
+  Checked by script that no data value changed (only "36,000 km" and "0 and 1" phrases
+  were dropped from the summaries).
