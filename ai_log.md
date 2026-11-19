@@ -444,3 +444,4 @@ numbers or claims changed. PDF rebuilt.
   new page; CSS keeps headings with their text. No text or numbers changed.
 - Author name set to "O. Kutay Mihliardic" (user's choice; Natural Hazards 2024 byline is "Omer Kutay Mihliardic", both cite as Mihliardic, O. K.). Affiliation and ORCID still placeholders.
 - ORCID 0000-0002-3269-302X added (read from the user's screenshot; check digit verified).
+- Author block completed: affiliation LUH Institute of Meteorology and Climatology, correspondence e-mail as given by the user.

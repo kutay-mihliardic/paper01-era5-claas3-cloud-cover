@@ -2,9 +2,9 @@
 
 **O. Kutay Mihliardic**<sup>1</sup>
 
-<sup>1</sup> [Affiliation or "Independent researcher"], [City, Country] · ORCID: [0000-0002-3269-302X](https://orcid.org/0000-0002-3269-302X)
+<sup>1</sup> Institute of Meteorology and Climatology, Leibniz University Hannover, Hannover, Germany · ORCID: [0000-0002-3269-302X](https://orcid.org/0000-0002-3269-302X)
 
-Correspondence: [e-mail]
+Correspondence: O. Kutay Mihliardic (mihliardic@meteo.uni-hannover.de)
 
 *Manuscript v1.0, 19 November 2026*
 

@@ -262,7 +262,7 @@ these points before submission. Evidence strength is given for each point.
 
 - Review `study_notes.md` §7 (IFS / ERA5 / AIFS, frozen model and homogeneity,
   parametrization) with the user again before the paper is submitted (2026-11-17).
-- Submission checklist (2026-11-19): (1) author name, affiliation, ORCID — from the user;
+- Submission checklist (2026-11-19): (1) author name, affiliation, ORCID, e-mail — **done** (O. Kutay Mihliardic, LUH IMUK, 0000-0002-3269-302X);
   (2) Zenodo DOI for the code/data: enable the Zenodo–GitHub integration, merge the
   phase-7 branch into main, publish a new release (e.g. v1.1.0) → DOI into Open
   Research; (3) rebuild PDF (`make paper`); (4) user uploads to ESS Open Archive;
