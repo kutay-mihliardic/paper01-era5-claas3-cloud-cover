@@ -431,3 +431,11 @@ numbers or claims changed. PDF rebuilt.
   Abstract, Plain Language Summary, Introduction, 3.2, Discussion and Conclusions.
   Checked by script that no data value changed (only "36,000 km" and "0 and 1" phrases
   were dropped from the summaries).
+- Merged 5.2 as the user asked (new version, sentence 4 starts with "The CM SAF
+  validation report lists ..."). Final consistency pass: the text mixed "instrument" and
+  "ceilometer" stations. Verified in the DWD instrument metadata that all 36 reference
+  stations and all 11 switch-test stations list ceilometers → "ceilometer stations" used
+  throughout the text, with a note that figures label them "instrument" (figures not
+  regenerated; analysis frozen). The same check showed 21 of 36 stations changed
+  ceilometer model within the period — an inhomogeneity I had not noticed before; added
+  as a limitation and to next_questions.md, not analysed.

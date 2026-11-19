@@ -96,6 +96,11 @@ phase 5 · Limitations ← open items in §4 and §6.
   - 15 switch observer → instrument during 2016–2023 (median 113 months), e.g.
     Hamburg 2022, Bremen 2022, Hannover 2022, Potsdam 03987 2020, Lindenberg 2020
 - Night hours (21–03 UTC) are ≈ 7/24 of valid hours in both groups. **[verified]**
+- All 36 selected instrument stations list a ceilometer in the DWD instrument metadata
+  for 2015–2024 (LD 40 and/or CHM 15k "Wolkenhöhenmessgerät"), so "ceilometer stations"
+  is used in the manuscript; all 11 stations of the switch test list a ceilometer for the
+  period after their switch. 21 of the 36 changed ceilometer model (LD 40 → CHM 15k)
+  within 2015–2024 — not examined; stated as a limitation. **[verified, 2026-11-19]**
 - Code `V_N = -1` appears in 17,105 hours, more in observer years; NOT defined in DWD's
   hourly description. **[open]**
 - Potsdam Säkularstation (03988): 9 months with MO_N > 8 (max 8.94), QN = 1; built from

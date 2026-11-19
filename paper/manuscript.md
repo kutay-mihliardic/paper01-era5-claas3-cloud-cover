@@ -135,8 +135,10 @@ method. Since the research question concerns the seasonal cycle, we further requ
 least 21 of the 30 months of every season (DJF, MAM, JJA, SON); a criterion based on the
 total number of months alone would admit stations with only 16 of 30 winter or autumn
 months. Of two co-located Potsdam series, the regular station is used. The remaining 39
-stations comprise 36 ceilometer stations and 3 observer stations, which are analysed
-separately because the two observing methods sample cloud cover differently.
+stations comprise 36 ceilometer stations (labelled "instrument" in the figures) and 3
+observer stations, which are analysed separately because the two observing methods
+sample cloud cover differently. All 36 list a ceilometer (LD 40 and/or CHM 15k) in the
+DWD instrument metadata for 2015–2024.
 
 ### 3.3 Matched sampling
 
@@ -168,7 +170,7 @@ For the 15 switching stations, the switch month is the month
 after the last month with at most 50 % instrument hours; months with 10–90 % instrument
 hours are discarded, and stations need at least 12 months before and after the switch.
 We compute the change of the deseasonalised station − ERA5 difference after the switch
-and subtract the change over the same months at the 36 stable instrument stations
+and subtract the change over the same months at the 36 stable ceilometer stations
 (difference-in-differences). The same is done with CLAAS-3 as reference. We report the
 mean over stations with a bootstrap 95 % confidence interval and a sign test. The
 selection rules and test statistics were defined before the analysis was carried out.
@@ -186,19 +188,19 @@ station locations (Sections 4.2–4.3).
 
 ### 4.2 Seasonal cycle at the stations
 
-At the 36 instrument stations, all three sources show the same seasonal cycle, with the
+At the 36 ceilometer stations, all three sources show the same seasonal cycle, with the
 most cloud in winter (0.82 at the stations) and the least in spring and summer (0.66 and
 0.64) (Fig. 2a; Table 1). ERA5 and CLAAS-3 agree closely in winter, spring and autumn
 (ERA5 − CLAAS-3 between −0.006 and +0.007), but not in summer, when ERA5 exceeds CLAAS-3
 by 0.022. The largest monthly differences occur in June (+0.035), August (+0.029) and
 September (+0.022); in all other months the two datasets are within 0.01 of each other.
 
-Both datasets are lower than the instrument stations in all twelve months (Fig. 2c):
+Both datasets are lower than the ceilometer stations in all twelve months (Fig. 2c):
 ERA5 by 0.027–0.036 depending on the season and CLAAS-3 by 0.029–0.049, with the largest
 CLAAS-3 difference in summer. At the three observer stations the monthly differences are much
 smaller, between −0.039 and +0.027, and both are positive in October–December (Fig. 2b, d).
 
-**Table 1.** Seasonal mean cloud fraction at the 36 instrument stations, 2015–2024, and
+**Table 1.** Seasonal mean cloud fraction at the 36 ceilometer stations, 2015–2024, and
 the ERA5 − CLAAS-3 difference in the two parts of the satellite record.
 
 | Season | Station | ERA5 | CLAAS-3 | ERA5 − station | CLAAS-3 − station | ERA5 − CLAAS-3 | ERA5 − CLAAS-3, 2015–2020 | ERA5 − CLAAS-3, 2021–2024 |
@@ -212,7 +214,7 @@ the ERA5 − CLAAS-3 difference in the two parts of the satellite record.
 
 ### 4.3 Station-level agreement
 
-Across the instrument stations, ERA5 reproduces the station-to-station differences in
+Across the ceilometer stations, ERA5 reproduces the station-to-station differences in
 seasonal mean cloud cover better than CLAAS-3 in every season (Fig. 3): the correlation
 is 0.50–0.64 for ERA5 and 0.14–0.33 for CLAAS-3. The RMSE is 0.039–0.047 for ERA5 and
 0.041–0.065 for CLAAS-3, the largest value being CLAAS-3 in summer. CLAAS-3 exceeds the
@@ -232,7 +234,7 @@ single step at the transition.
 ### 4.5 Effect of the observing method
 
 Eleven of the 15 switching stations meet the selection rules. After the switch from
-observer to instrument, the station value increases relative to ERA5 by 0.024 on average
+visual observation to ceilometer, the station value increases relative to ERA5 by 0.024 on average
 (95 % confidence interval 0.014–0.034; 10 of 11 stations positive; sign test p = 0.012),
 which corresponds to about 0.2 octa (Fig. S2b). Relative to CLAAS-3 the increase is 0.023
 (0.010–0.033; 9 of 11 positive; p = 0.065). The composite aligned on the switch month
@@ -261,10 +263,10 @@ cloud relative to ERA5 after switching from visual observation to ceilometers. T
 suggests that a substantial part of the offset relative to the ceilometer stations is
 related to the observing method rather than to errors in ERA5 or CLAAS-3; the switch
 effect (0.024) is of similar magnitude to the ERA5 − station offset at the ceilometer
-stations (0.027–0.036). Known error sources of visual observations act in opposite
-directions: observers tend to underestimate cloud cover at night and to overestimate
-convective cloud viewed at slant angles in summer, while ceilometers sample only a very
-small part of the sky (CM SAF, 2022b). Our data do not allow us to determine whether
+stations (0.027–0.036). The CM SAF validation report lists known error sources of visual
+observations that act in opposite directions: observers tend to underestimate cloud
+cover at night and to overestimate convective cloud viewed at slant angles in summer,
+while ceilometers sample only a very small part of the sky (CM SAF, 2022b). Our data do not allow us to determine whether
 observers underestimate or ceilometers overestimate cloud cover. Consequently, the
 attribution of the model–satellite difference to ERA5 or CLAAS-3, our second question,
 depends on the choice of reference and cannot be expressed as a single number.
@@ -292,9 +294,10 @@ result is not affected: summer has the largest ERA5 − CLAAS-3 difference in bo
 
 The observer group comprises only three stations, two of them in Berlin. The
 method-switch test cannot distinguish a step change from a gradual trend, and the set of
-contributing stations changes along the time axis. Finally, gridded values are taken
-from the nearest grid cell, whereas the stations observe either a single point or the
-visible sky.
+contributing stations changes along the time axis. Gridded values are taken from the nearest grid cell,
+whereas the stations observe either a single point or the visible sky. Finally, 21 of
+the 36 ceilometer stations changed ceilometer model (LD 40 to CHM 15k) during the study
+period; the effect of this change was not examined.
 
 ## 6. Conclusions
 
@@ -330,17 +333,17 @@ Natural Earth.
 
 ## Figures
 
-![**Figure 1.** Mean cloud fraction 2015–2024: (a) CLAAS-3, (b) ERA5, (c) DWD stations (circles: instrument, squares: observer). Dashed box: study region. CLAAS-3: © EUMETSAT, doi:10.5676/EUM_SAF_CM/CLAAS/V003.](../figures/fig_a_mean_maps.png)
+![**Figure 1.** Mean cloud fraction 2015–2024: (a) CLAAS-3, (b) ERA5, (c) DWD stations (circles: ceilometer stations, labelled "instrument"; squares: observer stations). Dashed box: study region. CLAAS-3: © EUMETSAT, doi:10.5676/EUM_SAF_CM/CLAAS/V003.](../figures/fig_a_mean_maps.png)
 
-![**Figure 2.** Seasonal cycle at the stations, 2015–2024: (a, b) cloud fraction; (c, d) difference to the station, for the 36 instrument stations (a, c; band: 25–75 % of stations) and the 3 observer stations (b, d). ERA5 and CLAAS-3 are sampled at the stations in matched months.](../figures/fig_b_seasonal_cycle.png)
+![**Figure 2.** Seasonal cycle at the stations, 2015–2024: (a, b) cloud fraction; (c, d) difference to the station, for the 36 ceilometer stations (a, c; band: 25–75 % of stations) and the 3 observer stations (b, d). ERA5 and CLAAS-3 are sampled at the stations in matched months.](../figures/fig_b_seasonal_cycle.png)
 
-![**Figure 3.** Seasonal mean of ERA5 (top) and CLAAS-3 (bottom) at each station against the station value. Circles: instrument stations; open squares: observer stations; dashed: 1:1. Statistics refer to instrument stations.](../figures/fig_c_station_scatter.png)
+![**Figure 3.** Seasonal mean of ERA5 (top) and CLAAS-3 (bottom) at each station against the station value. Circles: ceilometer stations ("instrument"); open squares: observer stations; dashed: 1:1. Statistics refer to the ceilometer stations.](../figures/fig_c_station_scatter.png)
 
 ## Supplementary figures
 
-![**Figure S1.** Deseasonalised differences averaged over the instrument stations: CLAAS-3 − station, ERA5 − station and CLAAS-3 − ERA5, with the CDR–ICDR transition (solid vertical line), platform-attribute changes (dotted) and the means of both periods (dashed).](../figures/figS1_break_test_2021.png)
+![**Figure S1.** Deseasonalised differences averaged over the ceilometer stations: CLAAS-3 − station, ERA5 − station and CLAAS-3 − ERA5, with the CDR–ICDR transition (solid vertical line), platform-attribute changes (dotted) and the means of both periods (dashed).](../figures/figS1_break_test_2021.png)
 
-![**Figure S2.** Observer-to-instrument switch at 11 DWD stations: (a) composite of station − reference aligned on the switch month, minus the stable-station control; (b) difference-in-differences change per station.](../figures/figS2_method_switch.png)
+![**Figure S2.** Switch from visual observation to ceilometer at 11 DWD stations: (a) composite of station − reference aligned on the switch month, minus the stable-station control; (b) difference-in-differences change per station.](../figures/figS2_method_switch.png)
 
 ## References
 
