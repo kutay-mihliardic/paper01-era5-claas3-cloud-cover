@@ -156,6 +156,7 @@ phase 5 · Limitations ← open items in §4 and §6.
 | D3c | 2026-11-14 | No threshold for "jump" had been fixed before the test; the result is borderline (CLAAS−station p = 0.09, CLAAS−ERA5 p = 0.02). Main results use 2015–2024; CDR (2015–2020) and ICDR (2021–2024) are shown as a sensitivity analysis regardless of the test; test results reported as they are. Supersedes D3b | Choosing a threshold after seeing the result would be outcome-driven; showing both views lets the reader judge. Decided by Claude at the user's request ("decide what a peer-reviewed journal expects") | **[decided]** |
 | D5 | 2026-11-14 | Method-switch test (user chose to do it now, option a): 15 observer→instrument stations; switch month = month after the last month with ≤ 50 % instrument hours (DWD hourly V_N_I); months with 10–90 % instrument share dropped; station used only with ≥ 12 months before and after; anomaly of station − reference (ERA5; CLAAS-3 as second reference) minus the station's calendar-month mean; difference-in-differences against the 36 stable instrument stations over the same months; mean over stations, bootstrap 95 % CI (10 000, seed 1), sign test | Tests H2's premise that instrument stations read higher than observers at the same site. Rules fixed and committed before running (`src/method_switch_test.py`) | **[decided, pre-registered]** |
 | D6 | 2026-11-14 | Main message (option a): we cannot say definitively which dataset is right, because the referee itself depends on the measurement method; we show that ERA5 and CLAAS-3 diverge most in summer (independent of the referee and of the CDR/ICDR period), and that the attribution to ERA5 vs satellite is sensitive to the choice of referee | User's choice | **[decided]** |
+| D7 | 2026-11-19 | Venue: preprint on ESS Open Archive first, then submit to Earth and Space Science (AGU). Manuscript formatted for AGU: Key Points, Plain Language Summary, Open Research | User's choice among ESS / AMT / ASL / MetZ | **[decided]** |
 | D4 | — | Treatment of `V_N = -1` (affects only hourly-based checks; MO_N is DWD's own) | — | **[open]** |
 
 Selected stations (D2a + D2b), 39 ids: 00298 00342 00403 00427 00591 00596 00662 00704
@@ -256,6 +257,12 @@ these points before submission. Evidence strength is given for each point.
 
 - Review `study_notes.md` §7 (IFS / ERA5 / AIFS, frozen model and homogeneity,
   parametrization) with the user again before the paper is submitted (2026-11-17).
+- Submission checklist (2026-11-19): (1) author name, affiliation, ORCID — from the user;
+  (2) Zenodo DOI for the code/data: enable the Zenodo–GitHub integration, merge the
+  phase-7 branch into main, publish a new release (e.g. v1.1.0) → DOI into Open
+  Research; (3) rebuild PDF (`make paper`); (4) user uploads to ESS Open Archive;
+  (5) check AGU author guidelines in the submission system (Key Points ≤ 140 characters,
+  abstract ≤ 250 words, Open Research) before journal submission.
 
 ## 7. Points the paper will need to state (methods)
 

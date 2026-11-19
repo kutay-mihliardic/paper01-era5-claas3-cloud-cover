@@ -398,3 +398,18 @@ v1.0.0, references sorted, CDS citation made consistent. PDF build: `make paper`
   −0.039, seasonal values stay within 0.027. Changed to "within 0.03 in every season".
 - A 2.1 citation read "(CDS variable description)" instead of the reference-list form.
 - Author name, affiliation and ORCID are unknown to me; left as placeholders.
+
+## 2026-11-19 — Venue chosen; AGU formatting
+
+**Asked:** Target Earth and Space Science; post a preprint first.
+
+**Done:** Recorded D7. Added Key Points (3, ≤ 140 characters, checked in code), Plain
+Language Summary, and an Open Research section (with the DWD dataset citation taken from
+DWD's own dataset description) to `paper/manuscript.md`; rebuilt the PDF (10 pages).
+Submission checklist in `methods_notes.md` §6b.
+
+**Where I went wrong / was uncertain:**
+- AGU requirements (Key Points length, Open Research, preference for DOIs over GitHub
+  links) are from my knowledge, not checked against AGU's current author guidelines here;
+  flagged for the user to check in the submission system.
+- I cannot upload the preprint myself (needs the user's account and author consent).

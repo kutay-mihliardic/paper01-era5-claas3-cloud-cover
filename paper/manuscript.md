@@ -8,6 +8,12 @@ Correspondence: [e-mail]
 
 *Manuscript v1.0, 19 November 2026*
 
+## Key Points
+
+- ERA5 and CLAAS-3 cloud cover over Northern Germany differ most in summer, in both parts of the satellite record
+- Ceilometer stations report more cloud than both datasets, and stations read higher after switching from observers to ceilometers
+- Which dataset is closer to the truth depends on how the ground reference measures cloud cover
+
 ## Abstract
 
 Monthly total cloud cover from the ERA5 reanalysis and from the CM SAF CLAAS-3 satellite
@@ -25,6 +31,21 @@ the station value rises by 0.024 (about 0.2 octa) relative to ERA5 after the swi
 summer difference between model and satellite is therefore a robust result, whereas the
 question of which of the two is closer to the truth depends on how the ground reference
 measures cloud cover.
+
+## Plain Language Summary
+
+How cloudy is Northern Germany, and who should we believe? We compared three sources of
+cloud cover for 2015–2024: a weather model that reconstructs past weather (ERA5), a
+weather satellite that looks down from 36,000 km (CLAAS-3), and ground stations of the
+German Weather Service. The model and the satellite agree well for most of the year but
+disagree most in summer, when the satellite sees less cloud. Ground stations should tell
+us which one is right, but the stations themselves measure in two ways: some use a
+person who looks at the whole sky, others use a laser instrument that looks straight
+up. Stations with the laser instrument report more cloud than both the model and the
+satellite, and when a station replaced its human observer with the instrument, it
+started to report more cloud. So the answer to "who is right" depends on how the ground
+measurement is made, while the summer difference between model and satellite holds
+either way.
 
 ## 1. Introduction
 
@@ -266,12 +287,18 @@ nearest cell, whereas stations measure at a point or over the visible sky.
    ground reference measures cloud cover; an independent reference (e.g. active remote
    sensing at a few sites) would be needed to settle it.
 
-## Data and code availability
+## Open Research
 
-Code, input and processed data, and figures are available at
-https://github.com/kutay-mihliardic/paper01-era5-claas3-cloud-cover/releases/tag/v1.0.0
-(`make all` reproduces all figures and tables). ERA5, CLAAS-3 and DWD data are
-distributed under CC BY 4.0 by their providers.
+ERA5 monthly averaged total cloud cover is available from the Copernicus Climate Data
+Store (Copernicus Climate Change Service, 2023). CLAAS-3 cloud fractional cover is
+available from the CM SAF Web User Interface (Meirink et al., 2022). DWD monthly station
+observations and hourly cloudiness are available from the DWD Climate Data Center
+(DWD Climate Data Center, 2024). All three are distributed under CC BY 4.0. The code,
+the input and processed data used here, and the figures are available at
+https://github.com/kutay-mihliardic/paper01-era5-claas3-cloud-cover (release v1.0.0)
+[ZENODO DOI to be added]; `make all` reproduces all figures and tables. Station data
+were retrieved with wetterdienst (version 0.185.0); figures were made with matplotlib
+and cartopy.
 
 ## Acknowledgements
 
@@ -303,6 +330,10 @@ Natural Earth.
 - Copernicus Climate Change Service (2023): ERA5 monthly averaged data on single levels
   from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS),
   doi:10.24381/cds.f17050d7 (accessed on 8 November 2026).
+- DWD Climate Data Center (2024): Monthly station observations (temperature,
+  precipitation, sunshine duration, wind and cloud cover) for Germany, Version v24.03.
+  https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/monthly/kl/
+  (accessed 8 November 2026).
 - ECMWF (2026): ERA5: data documentation. Copernicus Knowledge Base,
   https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation (accessed 19
   November 2026).
